@@ -1,0 +1,24 @@
+export default plop => {
+  plop.setGenerator('{{name}}', {
+    description: '{{description}}',
+    prompts: [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Get name'
+      },
+      {
+        type: 'confirm',
+        name: 'confirm',
+        message: 'Y/n question'
+      }
+    ],
+    actions: [
+      {
+        type: 'add',
+        path: 'path/to/save.txt',
+        templateFile: 'path/to/file/template.hbs'
+      }
+    ]
+  });
+}

@@ -1,0 +1,18 @@
+import {AsyncRouter} from 'express-async-router';
+import objectId from 'express-param-objectid';
+import * as controller from './{{name}}.controller';
+{{#if auth}}
+import {isAuthenticated} from '../../auth/auth.service';
+{{/if}}
+
+const router = new AsyncRouter();
+
+router.param('id', objectId);
+
+router.get('/',{{#if auth}} isAuthenticated(),{{/if}} controller.index);
+router.post('/',{{#if auth}} isAuthenticated(),{{/if}} controller.create);
+router.get('/:id',{{#if auth}} isAuthenticated(),{{/if}} controller.show);
+router.put('/:id',{{#if auth}} isAuthenticated(),{{/if}} controller.update);
+router.delete('/:id',{{#if auth}} isAuthenticated(),{{/if}} controller.destroy);
+
+export default router;

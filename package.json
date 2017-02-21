@@ -1,0 +1,87 @@
+{
+  "name": "project-starter-sample",
+  "version": "0.0.0",
+  "description": "a sample for the output of the project starter module",
+  "main": "server/app.js",
+  "scripts": {
+    "dev": "run-p server-dev open",
+    "open": "opn http://localhost:9393",
+    "server-dev": "nodemon -L --exec \"babel-node\" --watch server server/app.js",
+    "prod": "npm run build && nodemon dist/server/app.js",
+    "test": "npm run lint",
+    "lint": "run-p lint-*",
+    "lint-server": "eslint server --fix",
+    "lint-plop": "eslint plopfile.babel.js plop --fix",
+    "precommit": "lint-staged",
+    "commitmsg": "validate-commit-msg",
+    "babel": "babel server -d dist/server -s",
+    "plop": "plop",
+    "build": "rimraf lib && npm run babel && ncp package.json dist/package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noamokman/project-starter-sample.git"
+  },
+  "keywords": [],
+  "private": true,
+  "author": "Noam Okman <noamokman@gmail.com> (https://github.com/noamokman)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noamokman/project-starter-sample/issues"
+  },
+  "homepage": "https://github.com/noamokman/project-starter-sample#readme",
+  "engines": {
+    "node": ">=7"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-istanbul": "^0.11.0",
+    "babel-preset-env": "^0.0.9",
+    "babel-register": "^6.18.0",
+    "eslint": "^3.11.1",
+    "eslint-config-noamokman": "^5.0.1",
+    "husky": "^0.11.9",
+    "lint-staged": "3.0.3",
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^3.1.2",
+    "opn-cli": "^3.1.0",
+    "plop": "^1.7.2",
+    "plur": "^2.1.2",
+    "rimraf": "^2.5.4",
+    "uppercamelcase": "^1.1.0",
+    "validate-commit-msg": "^2.8.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "bunyan": "^1.8.5",
+    "bunyan-format": "^0.2.1",
+    "compression": "^1.6.2",
+    "cookie-parser": "^1.4.3",
+    "dotenv-extended": "^1.0.4",
+    "email-address": "^1.2.2",
+    "express": "^4.14.0",
+    "express-async-router": "^0.1.12",
+    "express-json-error-handler": "^1.0.0",
+    "express-jwt": "^5.1.0",
+    "express-mongoose-errors": "^0.2.0",
+    "express-param-objectid": "^1.0.0",
+    "http-errors": "^1.5.1",
+    "http-reject-empty": "^1.0.0",
+    "in-production": "^1.0.1",
+    "jsonwebtoken": "^7.1.9",
+    "lodash": "^4.17.2",
+    "method-override": "^2.3.7",
+    "mongoose": "^4.7.1",
+    "mongoose-plugin-seed": "^0.4.0",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local-mongoose": "^4.0.0",
+    "pify": "^2.3.0"
+  }
+}
