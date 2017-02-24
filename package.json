@@ -65,6 +65,7 @@
     "cookie-parser": "^1.4.3",
     "dotenv-extended": "^1.0.4",
     "email-address": "^1.2.2",
+    "env-bunyan": "^0.1.0",
     "express": "^4.14.0",
     "express-async-router": "^0.1.12",
     "express-json-error-handler": "^1.0.0",

@@ -1,4 +1,4 @@
-import logger from '../components/logger';
+import logger from 'env-bunyan';
 import {seed} from 'mongoose-plugin-seed';
 
 export default mongoose => {

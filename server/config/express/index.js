@@ -8,7 +8,7 @@ import mongooseErrors from 'express-mongoose-errors';
 import jsonErrorHandler from 'express-json-error-handler';
 import inProduction from 'in-production';
 import routes from './routes';
-import logger from '../../components/logger';
+import logger from 'env-bunyan';
 
 export default app => {
   app.use(compression());

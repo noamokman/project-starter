@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import mongooseConfig from './config/mongoose';
 import express from 'express';
 import expressConfig from './config/express';
-import logger from './components/logger';
+import logger from 'env-bunyan';
 
 const app = express();
 
