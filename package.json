@@ -16,7 +16,8 @@
     "dev": "run-p client-dev server-dev",
     "server-dev": "nodemon --watch server --exec \"babel-node\" server/app.js",
     "client-dev": "webpack-dev-server --open",
-    "prod": "npm run build && node dist/server/app.js"
+    "prod": "npm run build && node dist/server/app.js",
+    "plop": "plop"
   },
   "repository": {
     "type": "git",
