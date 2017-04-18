@@ -51,7 +51,7 @@ export default env => {
     },
     plugins,
     devServer: {
-      port: process.env.WEBPACK_PORT,
+      port: 9090,
       inline: true,
       historyApiFallback: true,
       proxy: {
