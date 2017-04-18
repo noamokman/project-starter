@@ -4,7 +4,6 @@ import rootReducer from './reducer';
 import DevTools from './components/DevTools';
 import {persistState} from 'redux-devtools';
 import {routerMiddleware} from 'react-router-redux';
-import axios from 'axios';
 
 export default (history, data = {}) => {
   const initialState = {...data};

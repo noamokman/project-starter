@@ -16,13 +16,11 @@ const style = {
   }
 };
 
-export default ({children}) => {
-  return (
-    <div style={style.wrapper}>
-      <Card style={style.card}>
-        <AppBar title='Welcome to the project-starter' showMenuIconButton={false} />
-        {children}
-      </Card>
-    </div>
-  );
-};
+export default ({children}) => (
+  <div style={style.wrapper}>
+    <Card style={style.card}>
+      <AppBar title='Welcome to the project-starter' showMenuIconButton={false} />
+      {children}
+    </Card>
+  </div>
+);

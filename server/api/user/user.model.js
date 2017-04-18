@@ -1,10 +1,9 @@
 import pify from 'pify';
-import mongoose from 'mongoose';
+import {Schema} from 'mongoose';
 import emailAddress from 'email-address';
 import {createSeedModel} from 'mongoose-plugin-seed';
 import seed from './user.seed';
 import passportLocalMongoose from 'passport-local-mongoose';
-const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
   name: {
