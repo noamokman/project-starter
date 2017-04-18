@@ -34,9 +34,9 @@ export function create ({body}, res) {
 export function update ({params: {id}, body}) {
   const data = _.pick(body, ['name', 'email']);
 
-  return User.findById(id)
+  return User.update({_id: id}, {$set: data})
+    .then(({n}) => n)
     .then(empty)
-    .then(user => user.set(data).save())
     .then(_.noop);
 }
 

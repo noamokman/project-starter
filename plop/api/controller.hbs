@@ -2,18 +2,15 @@ import {{properCase name}} from './{{name}}.model';
 import empty from 'http-reject-empty';
 import _ from 'lodash';
 
-// Get list of {{plur name}}
 export function index () {
   return {{properCase name}}.find({});
 }
 
-// Get a single {{name}}
 export function show ({params: {id}}) {
   return {{properCase name}}.findById(id)
     .then(empty);
 }
 
-// Creates a new {{name}}
 export function create ({body}, res) {
   const data = _.pick(body, ['name']);
 
@@ -26,17 +23,15 @@ export function create ({body}, res) {
     });
 }
 
-// Update a {{name}}
 export function update ({params: {id}, body}) {
   const data = _.pick(body, ['name']);
 
-  return {{properCase name}}.findById(id)
+  return {{properCase name}}.update({_id: id}, {$set: data})
+    .then(({n}) => n)
     .then(empty)
-    .then({{name}} => {{name}}.set(data).save())
     .then(_.noop);
 }
 
-// Deletes a {{name}}
 export function destroy ({params: id}) {
   return {{properCase name}}.findOneAndRemove({_id: id})
     .then(empty)
