@@ -32,7 +32,7 @@ export function update ({params: {id}, body}) {
     .then(_.noop);
 }
 
-export function destroy ({params: id}) {
+export function destroy ({params: {id}}) {
   return {{properCase name}}.findOneAndRemove({_id: id})
     .then(empty)
     .then(_.noop);
