@@ -9,13 +9,20 @@ export const app = express();
 
 expressConfig(app);
 
-mongooseConfig(mongoose);
+const mongoStarted = mongooseConfig(mongoose);
 
 mongoose.connect(process.env.MONGO_URI);
 
-export const server = app.listen(process.env.PORT, () => {
-  logger.info('Express listening on port %s', process.env.PORT);
+export let server;
+
+const expressStarted = new Promise(resolve => {
+  server = app.listen(process.env.PORT, () => {
+    logger.info('Express listening on port %s', process.env.PORT);
+    resolve();
+  });
 });
+
+export const started = Promise.all([mongoStarted, expressStarted]);
 
 export const close = () => {
   server.close();
