@@ -45,18 +45,16 @@ export function destroy ({params: {id}}) {
 export function changePassword ({user: _id, body: {oldPassword, newPassword}}) {
   return User.findById(_id)
     .then(empty)
-    .then(user => {
-      return user.authenticate(oldPassword)
-        .then(authenticated => {
-          if (!authenticated) {
-            return Promise.reject(createError(403));
-          }
+    .then(user => Promise.all([user, user.authenticate(oldPassword)]))
+    .then(([user, authenticated]) => {
+      if (!authenticated) {
+        return Promise.reject(createError(403));
+      }
 
-          return user.setPassword(newPassword);
-        })
-        .then(user => user.save())
-        .then(_.noop);
-    });
+      return user.setPassword(newPassword);
+    })
+    .then(user => user.save())
+    .then(_.noop);
 }
 
 export function me ({user}) {
