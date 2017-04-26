@@ -10,7 +10,9 @@ export default class Routes extends Component {
     return (<ReduxAsyncConnect {...props} />);
   }
 
-  render ({history}) {
+  render () {
+    const {history} = this.props;
+
     return (
       <Router history={history} render={this.renderRouter}>
         <Route path='/' component={App}>

@@ -4,6 +4,6 @@ import Router from '../../routes';
 
 export default ({store, history}) => (
   <Provider store={store}>
-    <Router history={history} store={store} />
+    <Router history={history} />
   </Provider>
 );

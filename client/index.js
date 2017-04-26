@@ -7,6 +7,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import './styles.css';
 import Root from './components/Root';
 import createStore from './create-store';
+import './todo.css';
 
 injectTapEventPlugin();
 
@@ -15,4 +16,4 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 render((
   <Root store={store} history={history} />
-), document.getElementById('container'));
+), document.getElementById('root'));
