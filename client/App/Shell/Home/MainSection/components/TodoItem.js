@@ -14,66 +14,79 @@ export default class TodoItem extends Component {
 
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleComplete = this.handleComplete.bind(this);
   }
 
   handleDoubleClick () {
     this.setState({editing: true});
   }
 
-  handleSave (id, text) {
-    if (text.length === 0) {
-      this.props.deleteTodo(id);
+  handleSave (text) {
+    const {todo: {id}, deleteTodo, editTodo} = this.props;
+
+    if (text.length) {
+      editTodo(id, text);
     }
     else {
-      this.props.editTodo(id, text);
+      deleteTodo(id);
     }
+
     this.setState({editing: false});
   }
 
+  handleDelete () {
+    const {todo: {id}, deleteTodo} = this.props;
+
+    deleteTodo(id);
+  }
+
+  handleComplete () {
+    const {todo: {id}, completeTodo} = this.props;
+
+    completeTodo(id);
+  }
+
   render () {
-    const {todo, completeTodo, deleteTodo} = this.props;
+    const {todo: {completed, text}} = this.props;
     const {editing} = this.state;
-
-    let element;
-
-    if (editing) {
-      element = (
-        <TodoTextInput
-          text={todo.text}
-          editing={editing}
-          onSave={text => this.handleSave(todo.id, text)}
-        />
-      );
-    }
-    else {
-      element = (
-        <div className='view'>
-          <input
-            className='toggle'
-            type='checkbox'
-            checked={todo.completed}
-            onChange={() => completeTodo(todo.id)}
-          />
-          <label onDoubleClick={this.handleDoubleClick}>
-            {todo.text}
-          </label>
-          <button
-            className='destroy'
-            onClick={() => deleteTodo(todo.id)}
-          />
-        </div>
-      );
-    }
-
-    return (
+    const wrapElement = element => (
       <li
         className={classnames({
-          completed: todo.completed,
-          editing: this.state.editing
+          completed,
+          editing
         })}
       >
         {element}
       </li>
+    );
+
+    if (editing) {
+      return wrapElement(
+        <TodoTextInput
+          text={text}
+          editing={editing}
+          onSave={this.handleSave}
+        />
+      );
+    }
+
+    return wrapElement(
+      <div className='view'>
+        <input
+          className='toggle'
+          type='checkbox'
+          checked={completed}
+          onChange={this.handleComplete}
+        />
+        <label onDoubleClick={this.handleDoubleClick}>
+          {text}
+        </label>
+        <button
+          className='destroy'
+          onClick={this.handleDelete}
+        />
+      </div>
     );
   }
 }
