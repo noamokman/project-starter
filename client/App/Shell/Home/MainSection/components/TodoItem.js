@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import TodoTextInput from '../../components/TodoTextInput';
+import TodoTextInput from '../../../components/TodoTextInput/index';
 
 export default class TodoItem extends Component {
   constructor () {
@@ -32,14 +32,15 @@ export default class TodoItem extends Component {
 
   render () {
     const {todo, completeTodo, deleteTodo} = this.props;
+    const {editing} = this.state;
 
     let element;
 
-    if (this.state.editing) {
+    if (editing) {
       element = (
         <TodoTextInput
           text={todo.text}
-          editing={this.state.editing}
+          editing={editing}
           onSave={text => this.handleSave(todo.id, text)}
         />
       );

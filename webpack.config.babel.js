@@ -8,8 +8,6 @@ export default env => {
     new HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: './client/index.html'
-
-      // favicon: './client/favicon.ico'
     })
   ];
 

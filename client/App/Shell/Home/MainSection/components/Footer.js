@@ -1,13 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import {SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} from '../redux';
-
-const FILTER_TITLES = {
-  [SHOW_ALL]: 'All',
-  [SHOW_ACTIVE]: 'Active',
-  [SHOW_COMPLETED]: 'Completed'
-};
+import {SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} from '../../redux';
+import FilterLink from './FilterLink';
 
 const style = {
   todoCount: {
@@ -29,7 +23,6 @@ export default class Footer extends Component {
 
     this.renderClearButton = this.renderClearButton.bind(this);
     this.renderTodoCount = this.renderTodoCount.bind(this);
-    this.renderFilterLink = this.renderFilterLink.bind(this);
   }
 
   renderTodoCount () {
@@ -40,21 +33,6 @@ export default class Footer extends Component {
       <span style={style.todoCount}>
         {activeCount || 'No'} {itemWord} {'left'}
       </span>
-    );
-  }
-
-  renderFilterLink (filter) {
-    const title = FILTER_TITLES[filter];
-    const {filter: selectedFilter, onShow} = this.props;
-
-    return (
-      <a
-        className={classnames({selected: filter === selectedFilter})}
-        style={{cursor: 'pointer'}}
-        onClick={() => onShow(filter)}
-      >
-        {title}
-      </a>
     );
   }
 
@@ -74,13 +52,19 @@ export default class Footer extends Component {
   }
 
   render () {
+    const {filter: selectedFilter, onShow} = this.props;
+
     return (
       <footer className='footer'>
         {this.renderTodoCount()}
         <ul className='filters'>
           {[SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED].map(filter =>
             <li key={filter}>
-              {this.renderFilterLink(filter)}
+              <FilterLink
+                filter={filter}
+                onClick={onShow}
+                selected={filter === selectedFilter}
+              />
             </li>
           )}
         </ul>

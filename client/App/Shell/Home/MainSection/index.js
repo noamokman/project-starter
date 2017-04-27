@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import TodoItem from './TodoItem';
-import Footer from './Footer';
+import TodoItem from './components/TodoItem';
+import Footer from './components/Footer';
 import {SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} from '../redux';
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,
-  [SHOW_ACTIVE]: todo => !todo.completed,
-  [SHOW_COMPLETED]: todo => todo.completed
+  [SHOW_ACTIVE]: ({completed}) => !completed,
+  [SHOW_COMPLETED]: ({completed}) => completed
 };
 
 export default class MainSection extends Component {
@@ -50,21 +50,22 @@ export default class MainSection extends Component {
   }
 
   renderFooter (completedCount) {
-    const {todos} = this.props;
+    const {todos: {length}} = this.props;
     const {filter} = this.state;
-    const activeCount = todos.length - completedCount;
 
-    if (todos.length) {
-      return (
-        <Footer
-          completedCount={completedCount}
-          activeCount={activeCount}
-          filter={filter}
-          onClearCompleted={this.handleClearCompleted}
-          onShow={this.handleShow}
-        />
-      );
+    if (!length) {
+      return;
     }
+
+    return (
+      <Footer
+        completedCount={completedCount}
+        activeCount={length - completedCount}
+        filter={filter}
+        onClearCompleted={this.handleClearCompleted}
+        onShow={this.handleShow}
+      />
+    );
   }
 
   render () {
