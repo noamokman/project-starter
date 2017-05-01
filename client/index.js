@@ -1,4 +1,3 @@
-import 'mdi/css/materialdesignicons.css';
 import React from 'react';
 import {syncHistoryWithStore} from 'react-router-redux';
 import {browserHistory} from 'react-router';
