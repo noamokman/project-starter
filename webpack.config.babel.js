@@ -55,6 +55,9 @@ export default env => {
       proxy: {
         '/api': {
           target: `http://localhost:${process.env.PORT}`
+        },
+        '/auth': {
+          target: `http://localhost:${process.env.PORT}`
         }
       }
     }
