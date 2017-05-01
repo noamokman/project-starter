@@ -17,7 +17,7 @@ const style = {
   }
 };
 
-export default class Footer extends Component {
+class Footer extends Component {
   constructor () {
     super();
 
@@ -81,3 +81,5 @@ Footer.propTypes = {
   onClearCompleted: PropTypes.func.isRequired,
   onShow: PropTypes.func.isRequired
 };
+
+export default Footer;

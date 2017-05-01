@@ -9,7 +9,7 @@ const FILTER_TITLES = {
   [SHOW_COMPLETED]: 'Completed'
 };
 
-export default class FilterLink extends Component {
+class FilterLink extends Component {
   constructor () {
     super();
 
@@ -43,3 +43,5 @@ FilterLink.propTypes = {
   onClick: PropTypes.func.isRequired,
   selected: PropTypes.bool.isRequired
 };
+
+export default FilterLink;

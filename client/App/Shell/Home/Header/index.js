@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import TodoTextInput from '../../components/TodoTextInput';
 
-export default class Header extends Component {
+class Header extends Component {
   constructor () {
     super();
+
     this.handleSave = this.handleSave.bind(this);
   }
 
@@ -31,3 +32,5 @@ export default class Header extends Component {
 Header.propTypes = {
   addTodo: PropTypes.func.isRequired
 };
+
+export default Header;

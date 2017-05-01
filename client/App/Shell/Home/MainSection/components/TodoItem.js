@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import TodoTextInput from '../../../components/TodoTextInput/index';
 
-export default class TodoItem extends Component {
+class TodoItem extends Component {
   constructor () {
     super();
     const {editing = false} = this.props || {};
@@ -97,3 +97,5 @@ TodoItem.propTypes = {
   deleteTodo: PropTypes.func.isRequired,
   completeTodo: PropTypes.func.isRequired
 };
+
+export default TodoItem;
