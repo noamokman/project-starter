@@ -18,13 +18,7 @@ App.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({todos}) => ({todos});
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(TodoActions, dispatch)
-});
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  ({todos}) => ({todos}),
+  dispatch => ({actions: bindActionCreators(TodoActions, dispatch)})
 )(App);

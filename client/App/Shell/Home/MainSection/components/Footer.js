@@ -34,14 +34,14 @@ const Footer = ({filter: selectedFilter, onShow, activeCount, completedCount, on
         </li>
       )}
     </ul>
-    {completedCount && (
+    {completedCount ? (
       <button
         className='clear-completed'
         onClick={onClearCompleted}
       >
         {'Clear completed'}
       </button>
-    )}
+    ) : null}
   </footer>
 );
 

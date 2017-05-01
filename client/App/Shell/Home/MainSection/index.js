@@ -10,7 +10,7 @@ const TODO_FILTERS = {
   [SHOW_COMPLETED]: ({completed}) => completed
 };
 
-export default class MainSection extends Component {
+class MainSection extends Component {
   constructor () {
     super();
 
@@ -23,7 +23,6 @@ export default class MainSection extends Component {
     this.handleClearCompleted = this.handleClearCompleted.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.renderToggleAll = this.renderToggleAll.bind(this);
-    this.renderFooter = this.renderFooter.bind(this);
   }
 
   handleClearCompleted () {
@@ -51,25 +50,6 @@ export default class MainSection extends Component {
     );
   }
 
-  renderFooter (completedCount) {
-    const {todos: {length}} = this.props;
-    const {filter} = this.state;
-
-    if (!length) {
-      return;
-    }
-
-    return (
-      <Footer
-        completedCount={completedCount}
-        activeCount={length - completedCount}
-        filter={filter}
-        onClearCompleted={this.handleClearCompleted}
-        onShow={this.handleShow}
-      />
-    );
-  }
-
   render () {
     const {todos, actions} = this.props;
     const {filter} = this.state;
@@ -87,7 +67,15 @@ export default class MainSection extends Component {
             <TodoItem key={todo.id} todo={todo} {...actions} />
           )}
         </ul>
-        {this.renderFooter(completedCount)}
+        {todos.length ? (
+          <Footer
+            completedCount={completedCount}
+            activeCount={todos.length - completedCount}
+            filter={filter}
+            onClearCompleted={this.handleClearCompleted}
+            onShow={this.handleShow}
+          />
+        ) : null}
       </section>
     );
   }
@@ -97,3 +85,5 @@ MainSection.propTypes = {
   todos: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 };
+
+export default MainSection;
