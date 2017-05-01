@@ -23,6 +23,7 @@ export default env => {
       path: '/dist/client',
       filename: './[name].[hash].js'
     },
+    devtool: env === 'production' ? 'source map' : 'eval-source-map',
     module: {
       rules: [
         {
