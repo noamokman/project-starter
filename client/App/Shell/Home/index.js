@@ -1,24 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import Header from './Header/index';
-import MainSection from './MainSection/index';
-import * as TodoActions from './redux';
+import NewTodoInput from './NewTodoInput';
+import TodoList from './TodoList';
 
-const App = ({todos, actions}) => (
+export default () => (
   <div>
-    <Header addTodo={actions.addTodo} />
-    <MainSection todos={todos} actions={actions} />
+    <h1>{'todos'}</h1>
+    <NewTodoInput />
+    <TodoList />
   </div>
 );
-
-App.propTypes = {
-  todos: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
-};
-
-export default connect(
-  ({todos}) => ({todos}),
-  dispatch => ({actions: bindActionCreators(TodoActions, dispatch)})
-)(App);

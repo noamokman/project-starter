@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import {bindActionCreators} from 'redux';
+import {addTodo} from '../TodoList/redux';
+import {connect} from 'react-redux';
 import TodoTextInput from '../../components/TodoTextInput';
 
-class Header extends Component {
+class NewTodoInput extends Component {
   constructor () {
     super();
 
@@ -29,8 +31,7 @@ class Header extends Component {
   }
 }
 
-Header.propTypes = {
-  addTodo: PropTypes.func.isRequired
-};
-
-export default Header;
+export default connect(
+  () => ({}),
+  dispatch => (bindActionCreators({addTodo}, dispatch))
+)(NewTodoInput);

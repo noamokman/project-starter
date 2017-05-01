@@ -5,10 +5,6 @@ const COMPLETE_TODO = 'COMPLETE_TODO';
 const COMPLETE_ALL = 'COMPLETE_ALL';
 const CLEAR_COMPLETED = 'CLEAR_COMPLETED';
 
-export const SHOW_ALL = 'show_all';
-export const SHOW_COMPLETED = 'show_completed';
-export const SHOW_ACTIVE = 'show_active';
-
 const initialState = [
   {
     text: 'Use Redux',
@@ -17,7 +13,7 @@ const initialState = [
   }
 ];
 
-export default function todos (state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
   case ADD_TODO:
     return [

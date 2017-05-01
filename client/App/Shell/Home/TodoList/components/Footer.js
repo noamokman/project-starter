@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import plur from 'plur';
-import {SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} from '../../redux';
 import FilterLink from './FilterLink';
 
 const style = {
@@ -24,7 +23,7 @@ const Footer = ({filter: selectedFilter, onShow, activeCount, completedCount, on
       {`${activeCount || 'No'} ${plur('item', activeCount)} left`}
     </span>
     <ul className='filters'>
-      {[SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED].map(filter =>
+      {['all', 'active', 'completed'].map(filter =>
         <li key={filter}>
           <FilterLink
             filter={filter}

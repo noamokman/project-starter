@@ -1,20 +1,15 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import TodoItem from './components/TodoItem';
 import Footer from './components/Footer';
-import {SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} from '../redux';
+import {bindActionCreators} from 'redux';
+import * as TodoActions from './redux';
+import {connect} from 'react-redux';
 
-const TODO_FILTERS = {
-  [SHOW_ALL]: () => true,
-  [SHOW_ACTIVE]: ({completed}) => !completed,
-  [SHOW_COMPLETED]: ({completed}) => completed
-};
-
-class MainSection extends Component {
+class TodoList extends Component {
   constructor () {
     super();
 
-    const {filter = SHOW_ALL} = this.props || {};
+    const {filter = 'all'} = this.props || {};
 
     this.state = {
       filter
@@ -26,7 +21,7 @@ class MainSection extends Component {
   }
 
   handleClearCompleted () {
-    this.props.actions.clearCompleted();
+    this.props.clearCompleted();
   }
 
   handleShow (filter) {
@@ -34,7 +29,7 @@ class MainSection extends Component {
   }
 
   renderToggleAll (completedCount) {
-    const {todos: {length}, actions: {completeAll}} = this.props;
+    const {todos: {length}, completeAll} = this.props;
 
     if (!length) {
       return;
@@ -51,11 +46,18 @@ class MainSection extends Component {
   }
 
   render () {
-    const {todos, actions} = this.props;
+    const {todos, completeTodo, deleteTodo, editTodo} = this.props;
     const {filter} = this.state;
-    const filteredTodos = todos.filter(TODO_FILTERS[filter]);
-    const completedCount = todos.reduce((count, todo) =>
-        todo.completed ? count + 1 : count,
+
+    const todoFilters = {
+      all: () => true,
+      active: ({completed}) => !completed,
+      completed: ({completed}) => completed
+    };
+
+    const filteredTodos = todos.filter(todoFilters[filter]);
+    const completedCount = todos.reduce((count, {completed}) =>
+        completed ? count + 1 : count,
       0
     );
 
@@ -64,7 +66,7 @@ class MainSection extends Component {
         {this.renderToggleAll(completedCount)}
         <ul className='todo-list'>
           {filteredTodos.map(todo =>
-            <TodoItem key={todo.id} todo={todo} {...actions} />
+            <TodoItem key={todo.id} todo={todo} completeTodo={completeTodo} deleteTodo={deleteTodo} editTodo={editTodo} />
           )}
         </ul>
         {todos.length ? (
@@ -81,9 +83,7 @@ class MainSection extends Component {
   }
 }
 
-MainSection.propTypes = {
-  todos: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
-};
-
-export default MainSection;
+export default connect(
+  ({todos}) => ({todos}),
+  dispatch => (bindActionCreators(TodoActions, dispatch))
+)(TodoList);
