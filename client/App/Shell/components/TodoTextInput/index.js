@@ -16,10 +16,10 @@ export default class TodoTextInput extends Component {
     this.handleBlur = this.handleBlur.bind(this);
   }
 
-  handleSubmit (e) {
-    const text = e.target.value.trim();
+  handleSubmit ({which, target: {value}}) {
+    const text = value.trim();
 
-    if (e.which === 13) {
+    if (which === 13) {
       this.props.onSave(text);
 
       if (this.props.newTodo) {
@@ -28,26 +28,28 @@ export default class TodoTextInput extends Component {
     }
   }
 
-  handleChange (e) {
-    this.setState({text: e.target.value});
+  handleChange ({target: {value}}) {
+    this.setState({text: value});
   }
 
-  handleBlur (e) {
+  handleBlur ({target: {value}}) {
     if (!this.props.newTodo) {
-      this.props.onSave(e.target.value);
+      this.props.onSave(value);
     }
   }
 
   render () {
+    const {editing, newTodo, placeholder} = this.props;
+
     return (
       <input
         className={
-        classnames({
-          edit: this.props.editing,
-          'new-todo': this.props.newTodo
-        })}
+          classnames({
+            edit: editing,
+            'new-todo': newTodo
+          })}
         type='text'
-        placeholder={this.props.placeholder}
+        placeholder={placeholder}
         autoFocus='true'
         value={this.state.text}
         onBlur={this.handleBlur}
