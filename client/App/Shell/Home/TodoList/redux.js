@@ -47,14 +47,13 @@ export default function (state = initialState, action) {
   case COMPLETE_ALL: {
     const areAllMarked = state.every(({completed}) => completed);
 
-
     return state.map(todo => ({
       ...todo,
       completed: !areAllMarked
     }));
   }
   case CLEAR_COMPLETED:
-    return state.filter(todo => todo.completed === false);
+    return state.filter(({completed}) => !completed);
 
   default:
     return state;

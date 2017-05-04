@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {addTodo} from '../TodoList/redux';
 import {connect} from 'react-redux';
-import TodoTextInput from '../../components/TodoTextInput';
+import TodoTextInput from '../components/TodoTextInput';
 
 class NewTodoInput extends Component {
   constructor () {
@@ -32,6 +32,6 @@ class NewTodoInput extends Component {
 }
 
 export default connect(
-  () => ({}),
-  dispatch => (bindActionCreators({addTodo}, dispatch))
+  null,
+  dispatch => bindActionCreators({addTodo}, dispatch)
 )(NewTodoInput);

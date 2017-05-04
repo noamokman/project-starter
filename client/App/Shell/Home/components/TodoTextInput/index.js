@@ -19,12 +19,14 @@ export default class TodoTextInput extends Component {
   handleSubmit ({which, target: {value}}) {
     const text = value.trim();
 
-    if (which === 13) {
-      this.props.onSave(text);
+    if (which !== 13) {
+      return;
+    }
 
-      if (this.props.newTodo) {
-        this.setState({text: ''});
-      }
+    this.props.onSave(text);
+
+    if (this.props.newTodo) {
+      this.setState({text: ''});
     }
   }
 
