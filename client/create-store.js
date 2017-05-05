@@ -1,5 +1,5 @@
 import {createStore, applyMiddleware, compose} from 'redux';
-import promiseMiddleware from 'redux-simple-promise';
+import promiseMiddleware, {resolve, reject} from 'redux-simple-promise';
 import rootReducer from './reducer';
 import DevTools from './components/DevTools';
 import {persistState} from 'redux-devtools';
@@ -7,11 +7,10 @@ import {routerMiddleware} from 'react-router-redux';
 import axios from 'axios';
 import {multiClientMiddleware} from 'redux-axios-middleware';
 
-export default (history, data = {}) => {
-  const initialState = {...data};
+export default (history, initialState = {}) => {
   const suffixes = {
-    successSuffix: '_RESOLVED',
-    errorSuffix: '_REJECTED'
+    successSuffix: resolve(),
+    errorSuffix: reject()
   };
   const axiosConfig = {
     default: {
@@ -23,8 +22,14 @@ export default (history, data = {}) => {
         ...suffixes,
         interceptors: {
           request: [
-            function ({getState, dispatch, getSourceAction}, req) {
-              console.log(req); // contains information about request object
+            ({getState}, config) => {
+              const {auth: {token}} = getState();
+
+              if (token) {
+                config.headers.Authorization = `Bearer ${token}`;
+              }
+
+              return config;
             }
           ]
         }
@@ -38,13 +43,12 @@ export default (history, data = {}) => {
       options: suffixes
     }
   };
-  const middlewares = [promiseMiddleware(), multiClientMiddleware(axiosConfig), routerMiddleware(history)];
 
   return createStore(
     rootReducer,
     initialState,
     compose(
-      applyMiddleware(...middlewares),
+      applyMiddleware(promiseMiddleware(), multiClientMiddleware(axiosConfig), routerMiddleware(history)),
       window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
       persistState(
         window.location.href.match(/[?&]debug_session=([^&]+)\b/)

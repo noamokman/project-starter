@@ -91,6 +91,7 @@
     "react-router-redux": "^4.0.8",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
+    "redux-actions": "^2.0.2",
     "redux-async-connect": "^1.0.0-rc4",
     "redux-auth-wrapper": "^1.1.0",
     "redux-axios-middleware": "^4.0.0",

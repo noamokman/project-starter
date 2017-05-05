@@ -7,7 +7,7 @@ import Home from './Home';
 import About from './About';
 
 const userIsAuthenticated = userAuthWrapper({
-  authSelector: ({user}) => user, // how to get the user state
+  authSelector: ({auth: {user}}) => user, // how to get the user state
   redirectAction: routerActions.replace, // the redux action to dispatch for redirect
   wrapperDisplayName: 'UserIsAuthenticated' // a nice name for this auth check
 });
