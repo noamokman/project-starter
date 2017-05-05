@@ -23,12 +23,6 @@ const UserSchema = new Schema({
     lowercase: true,
     unique: true
   },
-  widgets: [{
-    widget: {
-      type: Schema.Types.ObjectId,
-      ref: 'Widget'
-    }
-  }],
   admin: Boolean
 });
 

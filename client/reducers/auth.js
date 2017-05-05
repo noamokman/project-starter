@@ -1,4 +1,5 @@
 import {resolve} from 'redux-simple-promise';
+import {createAction} from 'redux-actions';
 import {LOGIN} from '../App/Login/redux';
 
 export const LOAD_USER = 'LOAD_USER';
@@ -25,12 +26,8 @@ export default function auth (state = initialState, action) {
   }
 }
 
-
-export const loadUser = () => ({
-  type: LOAD_USER,
-  payload: {
-    request: {
-      url: '/users/me'
-    }
+export const loadUser = createAction(LOAD_USER, () => ({
+  request: {
+    url: '/users/me'
   }
-});
+}));

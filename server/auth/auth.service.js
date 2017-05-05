@@ -13,9 +13,7 @@ export function isAuthenticated () {
     }
 
     return validateJwt(req, res)
-      .then(() => {
-        return User.findById(req.user._id);
-      })
+      .then(() => User.findById(req.user._id))
       .then(user => {
         if (!user) {
           return Promise.reject(createError(401));
