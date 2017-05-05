@@ -9,8 +9,8 @@ import {multiClientMiddleware} from 'redux-axios-middleware';
 
 export default (history, initialState = {}) => {
   const suffixes = {
-    successSuffix: resolve(),
-    errorSuffix: reject()
+    successSuffix: resolve(''),
+    errorSuffix: reject('')
   };
   const axiosConfig = {
     default: {
