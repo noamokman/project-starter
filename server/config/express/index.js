@@ -1,3 +1,4 @@
+import express from 'express';
 import morgan from 'morgan';
 import compression from 'compression';
 import {urlencoded, json} from 'body-parser';
@@ -10,7 +11,9 @@ import inProduction from 'in-production';
 import routes from './routes';
 import logger from 'env-bunyan';
 
-export default app => {
+export default () => {
+  const app = express();
+
   app.use(compression());
   app.use(urlencoded({extended: false}));
   app.use(json());
@@ -30,4 +33,6 @@ export default app => {
       logger.error({err, req, res});
     }
   }));
+
+  return app;
 };

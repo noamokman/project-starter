@@ -1,17 +1,12 @@
 import 'dotenv-extended/config';
 import mongoose from 'mongoose';
-import mongooseConfig from './config/mongoose';
-import express from 'express';
-import expressConfig from './config/express';
+import seed from './config/mongoose';
+import createApp from './config/express';
 import logger from 'env-bunyan';
 
-export const app = express();
+export const app = createApp();
 
-expressConfig(app);
-
-const mongoStarted = mongooseConfig(mongoose);
-
-mongoose.connect(process.env.MONGO_URI);
+const mongoStarted = seed();
 
 export let server;
 
