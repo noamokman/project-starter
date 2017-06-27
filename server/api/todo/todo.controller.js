@@ -6,9 +6,10 @@ export function index ({user}) {
   return Todo.find({user});
 }
 
-export function show ({params: {id}}) {
+export function show ({user: {_id}, params: {id}}) {
   return Todo.findById(id)
-    .then(empty);
+    .then(empty)
+    .then(todo => !todo.user.equals(_id) ? empty() : todo);
 }
 
 export function create ({user, body}, res) {
@@ -32,8 +33,8 @@ export function update ({params: {id}, body}) {
     .then(_.noop);
 }
 
-export function destroy ({params: {id}}) {
-  return Todo.findOneAndRemove({_id: id})
+export function destroy ({user, params: {id}}) {
+  return Todo.findOneAndRemove({_id: id, user})
     .then(empty)
     .then(_.noop);
 }
