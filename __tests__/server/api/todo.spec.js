@@ -142,6 +142,16 @@ describe('Todo api', () => {
       .expect(200)
       .then(({body}) => {
         expect(Object.keys(body)).toHaveLength(0);
+      })
+      .then(() => request(server)
+        .get(`/api/todos/${todo._id}`)
+        .set('Authorization', authorizationToken)
+        .expect(200))
+      .then(({body}) => {
+        expect(body).toHaveProperty('text', 'yay');
+        expect(body).toHaveProperty('completed', todo.completed);
+        expect(body).toHaveProperty('user', todo.user._id);
+        expect(body).toHaveProperty('_id');
       }));
   });
 

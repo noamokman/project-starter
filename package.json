@@ -15,6 +15,7 @@
     "commitmsg": "validate-commit-msg",
     "lint-server": "eslint server --fix",
     "lint-client": "eslint client --fix",
+    "lint-tests": "eslint __tests__ --fix",
     "dev": "run-p client-dev server-dev",
     "server-dev": "nodemon --watch server --exec \"babel-node\" server/app.js",
     "client-dev": "webpack-dev-server --open",

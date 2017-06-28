@@ -1,6 +1,5 @@
 import User from './user.model';
 import createError from 'http-errors';
-import {signToken} from '../../auth/auth.service';
 import empty from 'http-reject-empty';
 import _ from 'lodash';
 
@@ -13,47 +12,30 @@ export function show ({params: {id}}) {
     .then(empty);
 }
 
-export function create ({body}, res) {
-  const data = _.pick(body, ['name']);
+export function update ({user, params: {id}, body}) {
+  if (!user._id.equals(id) && !user.admin) {
+    return Promise.reject(createError(403));
+  }
 
-  return User.create(data)
-    .then(empty)
-    .then(({_id}) => {
-      res.status(201);
-
-      return {
-        token: signToken(_id)
-      };
-    });
-}
-
-export function update ({params: {id}, body}) {
   const data = _.pick(body, ['name', 'email']);
 
-  return User.update({_id: id}, {$set: data})
-    .then(({n}) => n)
+  return User.findByIdAndUpdate(id, {$set: data})
     .then(empty)
     .then(_.noop);
 }
 
-export function destroy ({params: {id}}) {
-  return User.findOneAndRemove({_id: id})
-    .then(empty)
-    .then(_.noop);
-}
+export function changePassword ({user, params: {id}, body: {oldPassword, newPassword}}) {
+  if (typeof oldPassword !== 'string' || typeof newPassword !== 'string') {
+    return Promise.reject(createError(400, 'missing password arguments'));
+  }
 
-export function changePassword ({user: _id, body: {oldPassword, newPassword}}) {
-  return User.findById(_id)
-    .then(empty)
-    .then(user => Promise.all([user, user.authenticate(oldPassword)]))
-    .then(([user, authenticated]) => {
-      if (!authenticated) {
-        return Promise.reject(createError(403));
-      }
+  if (!user._id.equals(id)) {
+    return Promise.reject(createError(403));
+  }
 
-      return user.setPassword(newPassword);
-    })
-    .then(user => user.save())
+  return user.authenticate(oldPassword)
+    .then(authenticated => !authenticated ? Promise.reject(createError(403)) : user.setPassword(newPassword))
+    .then(() => user.save())
     .then(_.noop);
 }
 
