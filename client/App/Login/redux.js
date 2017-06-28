@@ -5,7 +5,7 @@ export const LOGIN = 'LOGIN';
 
 const initialState = {};
 
-export default function login (state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
   case LOGIN: {
     console.log(action.payload);
