@@ -1,5 +1,6 @@
 import 'dotenv-extended/config';
-import {HotModuleReplacementPlugin} from 'webpack';
+import {resolve} from 'path';
+import {HotModuleReplacementPlugin, optimize} from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import BabiliPlugin from 'babili-webpack-plugin';
 
@@ -13,6 +14,7 @@ export default env => {
 
   if (env === 'production') {
     plugins.push(new BabiliPlugin());
+    plugins.push(new optimize.ModuleConcatenationPlugin());
   }
 
   return {
@@ -20,7 +22,7 @@ export default env => {
       main: './client/index.js'
     },
     output: {
-      path: '/dist/client',
+      path: resolve(__dirname, './dist/client'),
       filename: './[name].[hash].js'
     },
     devtool: env === 'production' ? 'source map' : 'eval-source-map',
