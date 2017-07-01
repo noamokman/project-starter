@@ -1,8 +1,5 @@
 import {Router} from 'express';
-import localPassport from './local/passport';
 import localRoute from './local';
-
-localPassport();
 
 const router = new Router();
 
