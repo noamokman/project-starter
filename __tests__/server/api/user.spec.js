@@ -1,5 +1,5 @@
 import request from 'supertest';
-import {initServer} from './server.util';
+import {initServer} from '../server.util';
 import {getAuthorizationHeader} from './auth.util';
 
 describe('User api', () => {
@@ -194,6 +194,12 @@ describe('User api', () => {
       .then(({body: {message}}) => {
         expect(message).toBe('missing password arguments');
       }));
+
+    it('should fail if wrong password given', () => request(server)
+      .put(`/api/users/${user._id}/password`)
+      .send({oldPassword: 'lol', newPassword: '123456'})
+      .set('Authorization', authorizationToken)
+      .expect(403));
 
     it('should update a users password', () => request(server)
       .put(`/api/users/${user._id}/password`)

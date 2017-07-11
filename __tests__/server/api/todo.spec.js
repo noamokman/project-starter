@@ -1,5 +1,5 @@
 import request from 'supertest';
-import {initServer} from './server.util';
+import {initServer} from '../server.util';
 import {getAuthorizationHeader} from './auth.util';
 
 describe('Todo api', () => {
@@ -39,7 +39,7 @@ describe('Todo api', () => {
       .set('Authorization', authorizationToken)
       .expect(400)
       .then(({body: {message}}) => {
-        expect(message).toBe('Todo validation failed');
+        expect(message).toMatch('Todo validation failed');
       }));
 
     it('should create a todo', () => request(server)

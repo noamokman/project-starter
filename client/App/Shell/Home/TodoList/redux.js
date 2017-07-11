@@ -27,22 +27,22 @@ export default function (state = initialState, action) {
 
   case DELETE_TODO:
     return state.filter(todo =>
-        todo.id !== action.id
-      );
+      todo.id !== action.id
+    );
 
   case EDIT_TODO:
     return state.map(todo =>
-        todo.id === action.id ?
-          {...todo, text: action.text} :
-          todo
-      );
+      todo.id === action.id ?
+        {...todo, text: action.text} :
+        todo
+    );
 
   case COMPLETE_TODO:
     return state.map(todo =>
-        todo.id === action.id ?
-          {...todo, completed: !todo.completed} :
-          todo
-      );
+      todo.id === action.id ?
+        {...todo, completed: !todo.completed} :
+        todo
+    );
 
   case COMPLETE_ALL: {
     const areAllMarked = state.every(({completed}) => completed);

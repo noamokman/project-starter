@@ -6,11 +6,14 @@ export function index (req, res, next) {
     const error = err || info;
 
     if (error) {
-      return res.status(401).json(error);
-    }
+      const errMap = {
+        'Missing credentials': 400,
+        'Password or username are incorrect': 401
+      };
 
-    if (!user) {
-      return res.status(404).json({message: 'something went wrong, please try again.'});
+      error.status = errMap[error.message];
+
+      return next(error);
     }
 
     res.json({token: signToken(user._id)});

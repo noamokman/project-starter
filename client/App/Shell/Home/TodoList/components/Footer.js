@@ -24,13 +24,13 @@ const Footer = ({filter: selectedFilter, onShow, activeCount, completedCount, on
     </span>
     <ul className='filters'>
       {['all', 'active', 'completed'].map(filter =>
-        <li key={filter}>
+        (<li key={filter}>
           <FilterLink
             filter={filter}
             onClick={onShow}
             selected={filter === selectedFilter}
           />
-        </li>
+        </li>)
       )}
     </ul>
     {completedCount ? (

@@ -57,8 +57,8 @@ class TodoList extends Component {
 
     const filteredTodos = todos.filter(todoFilters[filter]);
     const completedCount = todos.reduce((count, {completed}) =>
-        completed ? count + 1 : count,
-      0
+      completed ? count + 1 : count,
+    0
     );
 
     return (
