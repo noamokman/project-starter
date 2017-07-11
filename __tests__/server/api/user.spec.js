@@ -1,6 +1,6 @@
 import request from 'supertest';
 import {initServer} from '../server.util';
-import {getAuthorizationHeader} from './auth.util';
+import {getAuthorizationHeader} from '../auth.util';
 
 describe('User api', () => {
   const {started, close, server} = initServer('user');

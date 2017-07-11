@@ -5,7 +5,7 @@ describe('Auth api', () => {
   const {started, close, server} = initServer('auth');
 
   beforeAll(() => started);
-  afterAll(() => close());
+  afterAll(close);
 
   describe('POST /auth/local', () => {
     it('should fail if no data sent', () => request(server)
