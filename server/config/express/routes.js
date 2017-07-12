@@ -1,3 +1,4 @@
+import {join} from 'path';
 import createError from 'http-errors';
 
 // inject:route-imports
@@ -20,7 +21,5 @@ export default app => {
     });
 
   app.route('/*')
-    .get((req, res) => {
-      res.send('hello');
-    });
+    .get((req, res) => res.sendFile(join(__dirname, '..', '..', '..', 'client', 'index.html')));
 };
