@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import TodoTextInput from '../../components/TodoTextInput/index';
 
-class TodoItem extends Component {
+export default class TodoItem extends Component {
   constructor () {
     super();
     const {editing = false} = this.props || {};
@@ -50,19 +48,10 @@ class TodoItem extends Component {
   render () {
     const {todo: {completed, text}} = this.props;
     const {editing} = this.state;
-    const wrapElement = element => (
-      <li
-        className={classnames({
-          completed,
-          editing
-        })}
-      >
-        {element}
-      </li>
-    );
+
 
     if (editing) {
-      return wrapElement(
+      return (
         <TodoTextInput
           text={text}
           editing={editing}
@@ -71,7 +60,7 @@ class TodoItem extends Component {
       );
     }
 
-    return wrapElement(
+    return (
       <div className='view'>
         <input
           className='toggle'
@@ -90,12 +79,3 @@ class TodoItem extends Component {
     );
   }
 }
-
-TodoItem.propTypes = {
-  todo: PropTypes.object.isRequired,
-  editTodo: PropTypes.func.isRequired,
-  deleteTodo: PropTypes.func.isRequired,
-  completeTodo: PropTypes.func.isRequired
-};
-
-export default TodoItem;

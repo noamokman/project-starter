@@ -1,7 +1,8 @@
 import React from 'react';
+import {Flex} from 'reflexbox';
 
 export default ({children}) => (
-  <div>
+  <Flex auto>
     {children}
-  </div>
+  </Flex>
 );

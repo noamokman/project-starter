@@ -62,13 +62,13 @@ class TodoList extends Component {
     );
 
     return (
-      <section className='main'>
+      <div>
         {this.renderToggleAll(completedCount)}
-        <ul className='todo-list'>
+        <div className='todo-list'>
           {filteredTodos.map(todo =>
             <TodoItem key={todo.id} todo={todo} completeTodo={completeTodo} deleteTodo={deleteTodo} editTodo={editTodo} />
           )}
-        </ul>
+        </div>
         {todos.length ? (
           <Footer
             completedCount={completedCount}
@@ -78,7 +78,7 @@ class TodoList extends Component {
             onShow={this.handleShow}
           />
         ) : null}
-      </section>
+      </div>
     );
   }
 }
