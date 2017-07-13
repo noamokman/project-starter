@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import {FlatButton, RaisedButton} from 'material-ui';
 
 const FILTER_TITLES = {
   all: 'All',
@@ -25,22 +24,8 @@ class FilterLink extends Component {
     const {filter, selected} = this.props;
     const title = FILTER_TITLES[filter];
 
-    return (
-      <a
-        className={classnames({selected})}
-        style={{cursor: 'pointer'}}
-        onClick={this.handleClick}
-      >
-        {title}
-      </a>
-    );
+    return (selected ? <RaisedButton onClick={this.handleClick} label={title} /> : <FlatButton onClick={this.handleClick} label={title} />);
   }
 }
-
-FilterLink.propTypes = {
-  filter: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  selected: PropTypes.bool.isRequired
-};
 
 export default FilterLink;

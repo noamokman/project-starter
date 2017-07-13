@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
+import {Checkbox, IconButton} from 'material-ui';
+import ActionDelete from 'material-ui/svg-icons/action/delete';
 import TodoTextInput from '../../components/TodoTextInput/index';
+import {Flex} from 'reflexbox';
 
 export default class TodoItem extends Component {
   constructor () {
@@ -61,21 +64,17 @@ export default class TodoItem extends Component {
     }
 
     return (
-      <div className='view'>
-        <input
-          className='toggle'
-          type='checkbox'
+      <Flex>
+        <Checkbox
+          label={text}
           checked={completed}
-          onChange={this.handleComplete}
+          onCheck={this.handleComplete}
+          onDoubleClick={this.handleDoubleClick}
         />
-        <label onDoubleClick={this.handleDoubleClick}>
-          {text}
-        </label>
-        <button
-          className='destroy'
-          onClick={this.handleDelete}
-        />
-      </div>
+        <IconButton tooltip='Delete' onClick={this.handleDelete}>
+          <ActionDelete />
+        </IconButton>
+      </Flex>
     );
   }
 }
