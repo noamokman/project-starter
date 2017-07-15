@@ -40,6 +40,11 @@ export default plop => {
       },
       {
         type: 'add',
+        path: '__tests__/server/api/{{name}}.spec.js',
+        templateFile: 'plop/api/spec.hbs'
+      },
+      {
+        type: 'add',
         path: 'server/api/{{name}}/{{name}}.seed.js',
         templateFile: 'plop/api/seed.hbs'
       },

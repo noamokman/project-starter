@@ -1,0 +1,211 @@
+import request from 'supertest';
+import {initServer} from '../server.util';
+{{#if auth}}import {getAuthorizationHeader} from '../auth.util';
+{{/if}}
+
+describe('{{properCase name}} api', () => {
+  const {started, close, server} = initServer('{{name}}');
+  {{#if auth}}
+  let authorizationToken;
+  {{/if}}
+
+  {{#if auth}}
+  beforeAll(() => started
+    .then(() => getAuthorizationHeader())
+    .then(token => {
+      authorizationToken = token;
+    }));
+  {{else}}
+  beforeAll(() => started);
+  {{/if}}
+
+  afterAll(close);
+
+  describe('GET /api/{{plur name}}', () => {
+    {{#if auth}}
+    it('should fail if not authorized', () => request(server)
+      .get('/api/{{plur name}}')
+      .expect(401));
+    {{/if}}
+    it('should get {{plur name}} array', () => request(server)
+      .get('/api/{{plur name}}')
+      {{#if auth}}
+      .set('Authorization', authorizationToken)
+      {{/if}}
+      .expect(200)
+      .then(({body}) => {
+        expect(Array.isArray(body)).toBe(true);
+      }));
+  });
+
+  describe('POST /api/{{plur name}}', () => {
+    {{#if auth}}
+    it('should fail if not authorized', () => request(server)
+      .post('/api/{{plur name}}')
+      .expect(401));
+    {{/if}}
+    it('should reject bad data', () => request(server)
+      .post('/api/{{plur name}}')
+      .send({fakeProperty: 'lol'})
+      {{#if auth}}
+      .set('Authorization', authorizationToken)
+      {{/if}}
+      .expect(400)
+      .then(({body: {message}}) => {
+        expect(message).toMatch('{{properCase  name}} validation failed');
+      }));
+
+    it('should create a {{name}}', () => request(server)
+      .post('/api/{{plur name}}')
+      .send({name: 'lol'})
+      {{#if auth}}
+      .set('Authorization', authorizationToken)
+      {{/if}}
+      .expect(201)
+      .then(({body}) => {
+        expect(body).toHaveProperty('name', 'lol');
+        expect(body).toHaveProperty('_id');
+      }));
+  });
+
+  describe('GET /api/{{plur name}}/:id', () => {
+    let {{name}};
+
+    beforeAll(() => request(server)
+      .post('/api/{{plur name}}')
+      .send({name: 'lol'})
+      {{#if auth}}
+      .set('Authorization', authorizationToken)
+      {{/if}}
+      .then(({body}) => {
+        {{name}} = body;
+      }));
+
+    {{#if auth}}
+    it('should fail if not authorized', () => request(server)
+      .get(`/api/{{plur name}}/${ {{name}}._id}`)
+      .expect(401));
+
+    {{/if}}
+    it('should fail if not valid id', () => request(server)
+      .get('/api/{{plur name}}/lol')
+      .expect(400));
+
+    it('should fail if does not exist', () => request(server)
+      .get('/api/{{plur name}}/507f1f77bcf86cd799439011')
+      {{#if auth}}
+      .set('Authorization', authorizationToken)
+      {{/if}}
+      .expect(404));
+
+    it('should get {{name}}', () => request(server)
+      .get(`/api/{{plur name}}/${ {{{name}}}._id}`)
+      {{#if auth}}
+      .set('Authorization', authorizationToken)
+      {{/if}}
+      .expect(200)
+      .then(({body}) => {
+        expect(body).toHaveProperty('_id');
+      }));
+  });
+
+  describe('PUT /api/{{plur name}}/:id', () => {
+    let {{name}};
+
+    beforeAll(() => request(server)
+      .post('/api/{{plur name}}')
+      .send({name: 'lol'})
+      {{#if auth}}
+      .set('Authorization', authorizationToken)
+      {{/if}}
+      .then(({body}) => {
+        {{name}} = body;
+      }));
+
+    {{#if auth}}
+    it('should fail if not authorized', () => request(server)
+      .put(`/api/{{plur name}}/${ {{{name}}}._id}`)
+      .expect(401));
+
+    {{/if}}
+    it('should fail if not valid id', () => request(server)
+      .put('/api/{{plur name}}/lol')
+      .expect(400));
+
+    it('should fail if does not exist', () => request(server)
+      .put('/api/{{plur name}}/507f1f77bcf86cd799439011')
+      {{#if auth}}
+      .set('Authorization', authorizationToken)
+      {{/if}}
+      .expect(404));
+
+    it('should update a {{name}}', () => request(server)
+      .put(`/api/{{plur name}}/${ {{{name}}}._id}`)
+      .send({name: 'yay'})
+      {{#if auth}}
+      .set('Authorization', authorizationToken)
+      {{/if}}
+      .expect(200)
+      .then(({body}) => {
+        expect(Object.keys(body)).toHaveLength(0);
+      })
+      .then(() => request(server)
+        .get(`/api/{{plur name}}/${ {{{name}}}._id}`)
+        {{#if auth}}
+        .set('Authorization', authorizationToken)
+        {{/if}}
+        .expect(200))
+      .then(({body}) => {
+        expect(body).toHaveProperty('name', 'yay');
+        expect(body).toHaveProperty('_id');
+      }));
+  });
+
+  describe('DELETE /api/{{plur name}}/:id', () => {
+    let {{name}};
+
+    beforeAll(() => request(server)
+      .post('/api/{{plur name}}')
+      .send({name: 'lol'})
+      {{#if auth}}
+      .set('Authorization', authorizationToken)
+      {{/if}}
+      .then(({body}) => {
+        {{name}} = body;
+      }));
+
+    {{#if auth}}
+    it('should fail if not authorized', () => request(server)
+      .delete(`/api/{{plur name}}/${ {{{name}}}._id}`)
+      .expect(401));
+
+    {{/if}}
+    it('should fail if not valid id', () => request(server)
+      .delete('/api/{{plur name}}/lol')
+      .expect(400));
+
+    it('should fail if does not exist', () => request(server)
+      .delete('/api/{{plur name}}/507f1f77bcf86cd799439011')
+      {{#if auth}}
+      .set('Authorization', authorizationToken)
+      {{/if}}
+      .expect(404));
+
+    it('should delete a {{name}}', () => request(server)
+      .delete(`/api/{{plur name}}/${ {{{name}}}._id}`)
+      {{#if auth}}
+      .set('Authorization', authorizationToken)
+      {{/if}}
+      .expect(200)
+      .then(({body}) => {
+        expect(Object.keys(body)).toHaveLength(0);
+
+        return request(server)
+          .get(`/api/{{plur name}}/${ {{{name}}}._id}`)
+          {{#if auth}}
+          .set('Authorization', authorizationToken)
+          {{/if}}
+          .expect(404);
+      }));
+  });
+});
