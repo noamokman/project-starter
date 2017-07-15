@@ -1,20 +1,27 @@
 import React from 'react';
 import {reduxForm, Field} from 'redux-form';
-import {CardTitle, CardText, CardActions, FlatButton} from 'material-ui';
+import {Card, CardTitle, CardText, CardActions, FlatButton} from 'material-ui';
+import {Flex} from 'reflexbox';
 import TextField from './components/TextField';
 
 const Login = ({handleSubmit}) => (
-  <form onSubmit={handleSubmit}>
-    <CardTitle title={'Login'} />
-    <CardText>
-      <Field name={'email'} component={TextField} label={'Email'} />
-      <Field name={'password'} component={TextField} type={'password'} label={'Password'} />
-    </CardText>
-    <CardActions>
-      <FlatButton label={'Not a user?'} />
-      <FlatButton type='submit' label={'Lets go!'} secondary />
-    </CardActions>
-  </form>
+  <Flex auto column align='center' justify='center'>
+    <form onSubmit={handleSubmit}>
+      <Card>
+        <CardTitle title='Login' />
+        <CardText>
+          <Flex column>
+            <Field name={'email'} component={TextField} label='Email' />
+            <Field name={'password'} component={TextField} type={'password'} label='Password' />
+          </Flex>
+        </CardText>
+        <CardActions>
+          <FlatButton type='submit' label='Lets go!' primary />
+          <FlatButton label='Not a user?' secondary />
+        </CardActions>
+      </Card>
+    </form>
+  </Flex>
 );
 
 const validate = values => {

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {routerActions} from 'react-router-redux';
+import {Flex} from 'reflexbox';
+import {AppBar} from 'material-ui';
 import * as LoginActions from './redux';
 import * as AuthActions from '../../reducers/auth';
 import Login from './Login';
@@ -47,7 +49,12 @@ class LoginContainer extends Component {
   }
 
   render () {
-    return <Login onSubmit={this.login} />;
+    return (
+      <Flex auto column>
+        <AppBar title='Project Starter' showMenuIconButton={false} />
+        <Login onSubmit={this.login} />
+      </Flex>
+    );
   }
 }
 
