@@ -20,6 +20,7 @@ class NewTodoInput extends Component {
   render () {
     return (
       <TodoTextInput
+        newTodo
         onSave={this.handleSave}
         placeholder='What needs to be done?'
       />
