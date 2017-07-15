@@ -4,7 +4,7 @@ import Footer from './components/Footer';
 import {bindActionCreators} from 'redux';
 import * as TodoActions from './redux';
 import {connect} from 'react-redux';
-import {Checkbox} from 'material-ui';
+import {Checkbox, List} from 'material-ui';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 
@@ -65,7 +65,7 @@ class TodoList extends Component {
     return (
       <div>
         {this.renderToggleAll(completedCount)}
-        <div>
+        <List>
           {filteredTodos.map(todo => (
             <TodoItem
               key={todo.id}
@@ -75,7 +75,7 @@ class TodoList extends Component {
               editTodo={editTodo}
             />
           ))}
-        </div>
+        </List>
         {todos.length ? (
           <Footer
             completedCount={completedCount}

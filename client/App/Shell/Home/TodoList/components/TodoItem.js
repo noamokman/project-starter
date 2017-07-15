@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {Checkbox, IconButton} from 'material-ui';
+import {Checkbox, IconButton, ListItem} from 'material-ui';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import TodoTextInput from '../../components/TodoTextInput/index';
-import {Flex} from 'reflexbox';
 
 export default class TodoItem extends Component {
   constructor () {
@@ -17,6 +16,8 @@ export default class TodoItem extends Component {
     this.handleSave = this.handleSave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleComplete = this.handleComplete.bind(this);
+    this.renderDeleteButton = this.renderDeleteButton.bind(this);
+    this.renderCheckBox = this.renderCheckBox.bind(this);
   }
 
   handleDoubleClick () {
@@ -48,8 +49,28 @@ export default class TodoItem extends Component {
     completeTodo(id);
   }
 
+  renderDeleteButton () {
+    return (
+      <IconButton tooltip='Delete' onClick={this.handleDelete}>
+        <ActionDelete />
+      </IconButton>
+    );
+  }
+
+  renderCheckBox () {
+    const {todo: {completed}} = this.props;
+
+    return (
+      <Checkbox
+        checked={completed}
+        onCheck={this.handleComplete}
+        onDoubleClick={this.handleDoubleClick}
+      />
+    );
+  }
+
   render () {
-    const {todo: {completed, text}} = this.props;
+    const {todo: {text}} = this.props;
     const {editing} = this.state;
 
 
@@ -64,17 +85,7 @@ export default class TodoItem extends Component {
     }
 
     return (
-      <Flex>
-        <Checkbox
-          label={text}
-          checked={completed}
-          onCheck={this.handleComplete}
-          onDoubleClick={this.handleDoubleClick}
-        />
-        <IconButton tooltip='Delete' onClick={this.handleDelete}>
-          <ActionDelete />
-        </IconButton>
-      </Flex>
+      <ListItem primaryText={text} leftCheckbox={this.renderCheckBox()} rightIconButton={this.renderDeleteButton()} />
     );
   }
 }
