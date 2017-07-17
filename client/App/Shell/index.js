@@ -1,10 +1,10 @@
 import React from 'react';
-import {Flex} from 'reflexbox';
 import {AppBar} from 'material-ui';
+import Layout from '../components/Layout';
 
 export default ({children}) => (
-  <Flex auto column>
+  <Layout>
     <AppBar title='Project Starter' showMenuIconButton={false} />
     {children}
-  </Flex>
+  </Layout>
 );

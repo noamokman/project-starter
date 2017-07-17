@@ -111,7 +111,7 @@
     "supertest": "^3.0.0",
     "uppercamelcase": "^3.0.0",
     "validate-commit-msg": "^2.12.2",
-    "webpack": "^3.2.0",
+    "webpack": "^3.3.0",
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
@@ -135,7 +135,7 @@
     "jsonwebtoken": "^7.4.1",
     "lodash": "^4.17.4",
     "method-override": "^2.3.9",
-    "mongoose": "^4.11.1",
+    "mongoose": "^4.11.3",
     "mongoose-plugin-seed": "^0.4.0",
     "morgan": "^1.8.2",
     "passport": "^0.3.2",
