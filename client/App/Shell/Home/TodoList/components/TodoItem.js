@@ -51,7 +51,7 @@ export default class TodoItem extends Component {
 
   renderDeleteButton () {
     return (
-      <IconButton tooltip='Delete' onClick={this.handleDelete}>
+      <IconButton tooltip='Delete' onTouchTap={this.handleDelete}>
         <ActionDelete />
       </IconButton>
     );

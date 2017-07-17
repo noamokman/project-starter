@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import TodoItem from './components/TodoItem';
 import Footer from './components/Footer';
 import {bindActionCreators} from 'redux';
-import * as TodoActions from './redux';
+import * as todoActions from './redux';
 import {connect} from 'react-redux';
 import {Checkbox, List} from 'material-ui';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
@@ -92,5 +92,5 @@ class TodoList extends Component {
 
 export default connect(
   ({todos}) => ({todos}),
-  dispatch => (bindActionCreators(TodoActions, dispatch))
+  dispatch => (bindActionCreators(todoActions, dispatch))
 )(TodoList);

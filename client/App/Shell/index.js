@@ -1,17 +1,37 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import {AppBar, IconButton} from 'material-ui';
 import Layout from '../components/Layout';
 import ActionExitToApp from 'material-ui/svg-icons/action/exit-to-app';
+import * as actions from '../../reducers/auth';
 
-const logout = (
-  <IconButton tooltip='Logout'>
-    <ActionExitToApp />
-  </IconButton>
-);
+class Shell extends Component {
+  constructor () {
+    super();
 
-export default ({children}) => (
-  <Layout>
-    <AppBar title='Project Starter' showMenuIconButton={false} iconElementRight={logout} />
-    {children}
-  </Layout>
-);
+    this.renderLogoutButton = this.renderLogoutButton.bind(this);
+  }
+
+  renderLogoutButton () {
+    const {logout} = this.props;
+
+    return (
+      <IconButton tooltip='Logout' onTouchTap={logout}>
+        <ActionExitToApp />
+      </IconButton>
+    );
+  }
+  render () {
+    return (
+      <Layout>
+        <AppBar title='Project Starter' showMenuIconButton={false} iconElementRight={this.renderLogoutButton()} />
+        {this.props.children}
+      </Layout>
+    );
+  }
+}
+export default connect(
+  null,
+  dispatch => bindActionCreators(actions, dispatch)
+)(Shell);
