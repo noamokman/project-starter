@@ -1,13 +1,14 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
-import {UserAuthWrapper as userAuthWrapper} from 'redux-auth-wrapper';
+import {connectedRouterRedirect} from 'redux-auth-wrapper/history3/redirect';
 import {routerActions} from 'react-router-redux';
 import Shell from './index';
 import Home from './Home';
 import About from './About';
 
-const userIsAuthenticated = userAuthWrapper({
-  authSelector: ({auth: {user}}) => user, // how to get the user state
+const userIsAuthenticated = connectedRouterRedirect({
+  redirectPath: '/login',
+  authenticatedSelector: ({auth: {token}}) => token, // how to get the user state
   redirectAction: routerActions.replace, // the redux action to dispatch for redirect
   wrapperDisplayName: 'UserIsAuthenticated' // a nice name for this auth check
 });

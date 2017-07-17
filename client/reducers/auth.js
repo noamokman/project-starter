@@ -8,18 +8,18 @@ const initialState = {
   token: localStorage.getItem('token')
 };
 
-export default function auth (state = initialState, action) {
-  switch (action.type) {
+export default function auth (state = initialState, {type, payload: {data} = {}}) {
+  switch (type) {
   case resolve(LOGIN): {
-    localStorage.setItem('token', action.payload.data.token);
+    localStorage.setItem('token', data.token);
 
-    return {...state, token: action.payload.data.token};
+    return {...state, token: data.token};
   }
   case LOAD_USER: {
     return state;
   }
   case resolve(LOAD_USER): {
-    return {...state, user: action.payload.data};
+    return {...state, user: data};
   }
   default:
     return state;
