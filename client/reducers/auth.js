@@ -11,9 +11,6 @@ const initialState = {
 
 export default function auth (state = initialState, {type, payload: {data} = {}}) {
   switch (type) {
-  case LOGIN: {
-    return state;
-  }
   case resolve(LOGIN): {
     localStorage.setItem('token', data.token);
 
@@ -23,9 +20,6 @@ export default function auth (state = initialState, {type, payload: {data} = {}}
     localStorage.removeItem('token');
 
     return {};
-  }
-  case LOAD_USER: {
-    return state;
   }
   case resolve(LOAD_USER): {
     return {...state, user: data};

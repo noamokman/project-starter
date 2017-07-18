@@ -8,9 +8,9 @@ import About from './About';
 
 const userIsAuthenticated = connectedRouterRedirect({
   redirectPath: '/login',
-  authenticatedSelector: ({auth: {token}}) => token, // how to get the user state
-  redirectAction: routerActions.replace, // the redux action to dispatch for redirect
-  wrapperDisplayName: 'UserIsAuthenticated' // a nice name for this auth check
+  authenticatedSelector: ({auth: {token}}) => token,
+  redirectAction: routerActions.replace,
+  wrapperDisplayName: 'UserIsAuthenticated'
 });
 
 

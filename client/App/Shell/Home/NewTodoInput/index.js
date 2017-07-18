@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
-import {addTodo} from '../TodoList/redux';
+import {addTodo} from '../redux';
 import {connect} from 'react-redux';
 import TodoTextInput from '../components/TodoTextInput';
 

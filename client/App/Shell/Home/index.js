@@ -5,15 +5,13 @@ import TodoList from './TodoList';
 import {Flex} from 'reflexbox';
 
 export default () => (
-  <Flex auto column>
-    <Flex auto column align='center' justify='center'>
-      <Card>
-        <CardTitle title='Todos' />
-        <CardText>
-          <NewTodoInput />
-          <TodoList />
-        </CardText>
-      </Card>
-    </Flex>
+  <Flex auto column align='center' justify='center'>
+    <Card>
+      <CardTitle title='Todos' />
+      <CardText>
+        <NewTodoInput />
+        <TodoList />
+      </CardText>
+    </Card>
   </Flex>
 );

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import TodoItem from './components/TodoItem';
 import Footer from './components/Footer';
 import {bindActionCreators} from 'redux';
-import * as todoActions from './redux';
+import * as todoActions from '../redux';
 import {connect} from 'react-redux';
 import {Checkbox, List} from 'material-ui';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
@@ -12,23 +12,12 @@ class TodoList extends Component {
   constructor () {
     super();
 
-    const {filter = 'all'} = this.props || {};
-
-    this.state = {
-      filter
-    };
-
-    this.handleClearCompleted = this.handleClearCompleted.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.renderToggleAll = this.renderToggleAll.bind(this);
   }
 
-  handleClearCompleted () {
-    this.props.clearCompleted();
-  }
-
   handleShow (filter) {
-    this.setState({filter});
+    this.props.setFilter(filter);
   }
 
   renderToggleAll (completedCount) {
@@ -50,8 +39,7 @@ class TodoList extends Component {
   }
 
   render () {
-    const {todos, completeTodo, deleteTodo, editTodo} = this.props;
-    const {filter} = this.state;
+    const {todos, completeTodo, deleteTodo, editTodo, clearCompleted, filter} = this.props;
 
     const todoFilters = {
       all: () => true,
@@ -81,7 +69,7 @@ class TodoList extends Component {
             completedCount={completedCount}
             activeCount={todos.length - completedCount}
             filter={filter}
-            onClearCompleted={this.handleClearCompleted}
+            onClearCompleted={clearCompleted}
             onShow={this.handleShow}
           />
         ) : null}
@@ -91,6 +79,6 @@ class TodoList extends Component {
 }
 
 export default connect(
-  ({todos}) => ({todos}),
-  dispatch => (bindActionCreators(todoActions, dispatch))
+  ({home}) => home,
+  dispatch => bindActionCreators(todoActions, dispatch)
 )(TodoList);
