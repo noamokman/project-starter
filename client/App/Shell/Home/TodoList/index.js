@@ -10,12 +10,7 @@ class TodoList extends Component {
   constructor () {
     super();
 
-    this.handleShow = this.handleShow.bind(this);
     this.renderToggleAll = this.renderToggleAll.bind(this);
-  }
-
-  handleShow (filter) {
-    this.props.setFilter(filter);
   }
 
   renderToggleAll (completedCount) {
@@ -38,7 +33,7 @@ class TodoList extends Component {
   }
 
   render () {
-    const {todos, completeTodo, deleteTodo, clearCompleted, filter} = this.props;
+    const {todos, completeTodo, deleteTodo, clearCompleted, filter, setFilter} = this.props;
 
     const todoFilters = {
       all: () => true,
@@ -68,7 +63,7 @@ class TodoList extends Component {
             activeCount={todos.length - completedCount}
             filter={filter}
             onClearCompleted={clearCompleted}
-            onShow={this.handleShow}
+            onShow={setFilter}
           />
         ) : null}
       </div>
