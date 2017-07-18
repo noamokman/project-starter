@@ -1,8 +1,8 @@
 import {resolve} from 'redux-simple-promise';
 import {createAction} from 'redux-actions';
-import {LOGIN} from '../App/Login/redux';
 
 export const LOAD_USER = 'LOAD_USER';
+export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 
 const initialState = {
@@ -11,6 +11,9 @@ const initialState = {
 
 export default function auth (state = initialState, {type, payload: {data} = {}}) {
   switch (type) {
+  case LOGIN: {
+    return state;
+  }
   case resolve(LOGIN): {
     localStorage.setItem('token', data.token);
 
@@ -31,6 +34,18 @@ export default function auth (state = initialState, {type, payload: {data} = {}}
     return state;
   }
 }
+
+export const localLogin = createAction(LOGIN, ({email, password}) => ({
+  client: 'auth',
+  request: {
+    url: '/local',
+    method: 'POST',
+    data: {
+      email,
+      password
+    }
+  }
+}));
 
 export const loadUser = createAction(LOAD_USER, () => ({
   request: {

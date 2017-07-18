@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {routerActions} from 'react-router-redux';
-import * as LoginActions from './redux';
-import * as AuthActions from '../../reducers/auth';
+import * as authActions from '../../reducers/auth';
 import Login from './Login';
 
 class LoginContainer extends Component {
@@ -55,5 +54,5 @@ class LoginContainer extends Component {
 
 export default connect(
   ({auth}) => ({auth}),
-  dispatch => bindActionCreators({...AuthActions, ...LoginActions, replace: routerActions.replace}, dispatch)
+  dispatch => bindActionCreators({...authActions, replace: routerActions.replace}, dispatch)
 )(LoginContainer);
