@@ -3,7 +3,7 @@ import {Router, Route, Redirect} from 'react-router';
 import {ReduxAsyncConnect} from 'redux-async-connect';
 import App from './App';
 import shellRoutes from './App/Shell/routes';
-import Login from './App/Login';
+import exteriorRoutes from './App/Exterior/routes';
 
 export default class Routes extends Component {
   static renderRouter (props) {
@@ -17,7 +17,7 @@ export default class Routes extends Component {
       <Router history={history} render={this.renderRouter}>
         <Route path='/' component={App}>
           {shellRoutes}
-          <Route path='login' component={Login} />
+          {exteriorRoutes}
           <Redirect from='*' to='/' />
         </Route>
       </Router>

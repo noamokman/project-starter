@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {routerActions} from 'react-router-redux';
-import * as authActions from '../../reducers/auth';
+import * as authActions from '../../../reducers/auth';
 import Login from './Login';
 
 class LoginContainer extends Component {
