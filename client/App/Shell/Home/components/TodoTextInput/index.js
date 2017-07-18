@@ -12,7 +12,6 @@ export default class TodoTextInput extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
   }
 
   handleSubmit ({which, target: {value}}) {
@@ -23,20 +22,11 @@ export default class TodoTextInput extends Component {
     }
 
     this.props.onSave(text);
-
-    if (this.props.newTodo) {
-      this.setState({text: ''});
-    }
+    this.setState({text: ''});
   }
 
   handleChange ({target: {value}}) {
     this.setState({text: value});
-  }
-
-  handleBlur ({target: {value}}) {
-    if (!this.props.newTodo) {
-      this.props.onSave(value);
-    }
   }
 
   render () {
@@ -46,7 +36,6 @@ export default class TodoTextInput extends Component {
       <TextField
         hintText={placeholder}
         value={this.state.text}
-        onBlur={this.handleBlur}
         onChange={this.handleChange}
         onKeyDown={this.handleSubmit}
       />

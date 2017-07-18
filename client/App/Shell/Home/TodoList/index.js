@@ -39,7 +39,7 @@ class TodoList extends Component {
   }
 
   render () {
-    const {todos, completeTodo, deleteTodo, editTodo, clearCompleted, filter} = this.props;
+    const {todos, completeTodo, deleteTodo, clearCompleted, filter} = this.props;
 
     const todoFilters = {
       all: () => true,
@@ -60,7 +60,6 @@ class TodoList extends Component {
               todo={todo}
               completeTodo={completeTodo}
               deleteTodo={deleteTodo}
-              editTodo={editTodo}
             />
           ))}
         </List>
