@@ -1,19 +1,10 @@
 import React from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {AppBar} from 'material-ui';
 import Layout from '../components/Layout';
-import LogoutButton from './components/LogoutButton';
-import * as actions from '../../reducers/auth';
+import AppBar from './components/AppBar';
 
-const Shell = ({logout, children}) => (
+export default ({children}) => (
   <Layout>
-    <AppBar title='Project Starter' showMenuIconButton={false} iconElementRight={<LogoutButton logout={logout} />} />
+    <AppBar />
     {children}
   </Layout>
 );
-
-export default connect(
-  null,
-  dispatch => bindActionCreators(actions, dispatch)
-)(Shell);
