@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 
 export default ({children}) => (
   <Layout>
-    <AppBar title='Welcome' showMenuIconButton={false} />
+    <AppBar title='Project Starter' showMenuIconButton={false} />
     {children}
   </Layout>
 );

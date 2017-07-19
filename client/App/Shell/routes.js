@@ -8,7 +8,7 @@ import About from './About';
 
 const userIsAuthenticated = connectedRouterRedirect({
   redirectPath: '/login',
-  authenticatedSelector: ({auth: {token}}) => token,
+  authenticatedSelector: ({auth: {user}}) => !!user,
   redirectAction: routerActions.replace,
   wrapperDisplayName: 'UserIsAuthenticated'
 });
