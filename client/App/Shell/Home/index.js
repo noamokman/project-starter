@@ -2,19 +2,33 @@ import React from 'react';
 import {Card, CardText, CardTitle} from 'material-ui';
 import NewTodoInput from './NewTodoInput';
 import TodoList from './TodoList';
-import {Flex} from 'reflexbox';
+import CompleteAllButton from './CompleteAllButton';
+import {Flex, Box} from 'reflexbox';
 import {Collapse} from 'react-collapse';
+import styled from 'styled-components';
+
+const Title = styled(CardTitle)
+  .attrs({
+    title: 'Todos'
+  })`
+  display: flex;
+  justify-content: space-between
+`;
 
 export default () => (
   <Flex auto column align='center' justify='center'>
-    <Collapse isOpened>
-      <Card>
-        <CardTitle title='Todos' />
-        <CardText>
-          <NewTodoInput />
-          <TodoList />
-        </CardText>
-      </Card>
-    </Collapse>
+    <Box w={1 / 3}>
+      <Collapse isOpened>
+        <Card>
+          <Title>
+            <CompleteAllButton />
+          </Title>
+          <CardText>
+            <NewTodoInput />
+            <TodoList />
+          </CardText>
+        </Card>
+      </Collapse>
+    </Box>
   </Flex>
 );
