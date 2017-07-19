@@ -1,6 +1,7 @@
 import {createAction} from 'redux-actions';
+import _ from 'lodash';
 
-const SET_FILTER = 'SET_FILTER';
+const TOGGLE_VISIBILITY = 'TOGGLE_VISIBILITY';
 const ADD_TODO = 'ADD_TODO';
 const DELETE_TODO = 'DELETE_TODO';
 const COMPLETE_TODO = 'COMPLETE_TODO';
@@ -15,15 +16,15 @@ const initialState = {
       id: 0
     }
   ],
-  filter: 'all'
+  visibility: true
 };
 
 export default function (state = initialState, {type, payload}) {
   switch (type) {
-  case SET_FILTER:
+  case TOGGLE_VISIBILITY:
     return {
       ...state,
-      filter: payload.filter
+      visibility: !state.visibility
     };
   case ADD_TODO:
     return {
@@ -74,9 +75,9 @@ export default function (state = initialState, {type, payload}) {
   }
 }
 
-export const setFilter = createAction(SET_FILTER, filter => ({filter}));
+export const toggleVisibility = createAction(TOGGLE_VISIBILITY, _.noop);
 export const addTodo = createAction(ADD_TODO, text => ({text}));
 export const deleteTodo = createAction(DELETE_TODO, id => ({id}));
 export const completeTodo = createAction(COMPLETE_TODO, id => ({id}));
-export const completeAll = createAction(COMPLETE_ALL);
-export const clearCompleted = createAction(CLEAR_COMPLETED);
+export const completeAll = createAction(COMPLETE_ALL, _.noop);
+export const clearCompleted = createAction(CLEAR_COMPLETED, _.noop);

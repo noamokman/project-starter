@@ -6,13 +6,10 @@ import CompleteAllButton from './CompleteAllButton';
 
 const CompleteAllButtonContainer = ({todos, completeAll}) => {
   const checked = todos.every(({completed}) => completed);
-
-  if (!todos.length) {
-    return null;
-  }
+  const disabled = !todos.length;
 
   return (
-    <CompleteAllButton onTouchTap={completeAll} checked={checked} />
+    <CompleteAllButton onTouchTap={completeAll} checked={checked} disabled={disabled} />
   );
 };
 
