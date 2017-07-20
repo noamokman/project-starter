@@ -2,26 +2,43 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {addTodo} from '../redux';
 import {connect} from 'react-redux';
-import TodoTextInput from '../components/TodoTextInput';
+import NewTodoInput from './NewTodoInput';
 
-class NewTodoInput extends Component {
+class NewTodoInputContainer extends Component {
   constructor () {
     super();
 
+    this.state = {
+      text: ''
+    };
+
     this.handleSave = this.handleSave.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSave (text) {
+  handleChange ({target: {value}}) {
+    this.setState({text: value});
+  }
+
+  handleSave ({which, target: {value}}) {
+    const text = value.trim();
+
+    if (which !== 13) {
+      return;
+    }
+
     if (text.length) {
       this.props.addTodo(text);
+      this.setState({text: ''});
     }
   }
 
   render () {
     return (
-      <TodoTextInput
-        newTodo
+      <NewTodoInput
         onSave={this.handleSave}
+        onChange={this.handleChange}
+        text={this.state.text}
         placeholder='What needs to be done?'
       />
     );
@@ -31,4 +48,4 @@ class NewTodoInput extends Component {
 export default connect(
   null,
   dispatch => bindActionCreators({addTodo}, dispatch)
-)(NewTodoInput);
+)(NewTodoInputContainer);
