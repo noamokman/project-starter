@@ -26,7 +26,6 @@ class LoginContainer extends Component {
       });
   }
 
-
   login (values) {
     const {localLogin, loadUser} = this.props;
 
