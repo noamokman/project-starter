@@ -17,7 +17,6 @@ const Login = ({handleSubmit}) => (
         </CardText>
         <CardActions>
           <FlatButton type='submit' label='Lets go!' primary />
-          <FlatButton label='Not a user?' secondary />
         </CardActions>
       </Card>
     </form>
