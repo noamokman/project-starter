@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {resolve} from 'redux-simple-promise';
 import {createAction} from 'redux-actions';
 
@@ -47,4 +48,4 @@ export const loadUser = createAction(LOAD_USER, () => ({
   }
 }));
 
-export const logout = createAction(LOGOUT);
+export const logout = createAction(LOGOUT, _.noop);

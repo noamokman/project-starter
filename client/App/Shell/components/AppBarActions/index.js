@@ -9,23 +9,28 @@ class AppBarActionsContainer extends Component {
   constructor () {
     super();
 
-    this.about = this.about.bind(this);
+    this.handleAbout = this.handleAbout.bind(this);
+    this.handleAdmin = this.handleAdmin.bind(this);
   }
 
-  about () {
+  handleAbout () {
     this.props.push('/about');
   }
 
+  handleAdmin () {
+    this.props.push('/admin');
+  }
+
   render () {
-    const {logout} = this.props;
+    const {logout, user = {}} = this.props;
 
     return (
-      <AppBarActions logout={logout} about={this.about} />
+      <AppBarActions onLogout={logout} admin={user.admin} onAbout={this.handleAbout} onAdmin={this.handleAdmin} />
     );
   }
 }
 
 export default connect(
-  null,
+  ({auth: {user}}) => ({user}),
   dispatch => bindActionCreators({logout, push: routerActions.push}, dispatch)
 )(AppBarActionsContainer);
