@@ -23,14 +23,12 @@ class NewTodoInputContainer extends Component {
   handleSave ({which, target: {value}}) {
     const text = value.trim();
 
-    if (which !== 13) {
+    if (which !== 13 || !text.length) {
       return;
     }
 
-    if (text.length) {
-      this.props.addTodo(text);
-      this.setState({text: ''});
-    }
+    this.props.addTodo(text);
+    this.setState({text: ''});
   }
 
   render () {
