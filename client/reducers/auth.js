@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {resolve} from 'redux-simple-promise';
+import {resolve, reject} from 'redux-simple-promise';
 import {createAction} from 'redux-actions';
 
 export const LOAD_USER = 'LOAD_USER';
@@ -12,19 +12,20 @@ const initialState = {
 
 export default function auth (state = initialState, {type, payload: {data} = {}}) {
   switch (type) {
-  case resolve(LOGIN): {
+  case resolve(LOGIN):
     localStorage.setItem('token', data.token);
 
     return {...state, token: data.token};
-  }
-  case LOGOUT: {
+
+  case LOGOUT:
+  case reject(LOAD_USER):
     localStorage.removeItem('token');
 
     return {};
-  }
-  case resolve(LOAD_USER): {
+
+  case resolve(LOAD_USER):
     return {...state, user: data};
-  }
+
   default:
     return state;
   }

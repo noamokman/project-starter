@@ -6,10 +6,13 @@ import Shell from './index';
 import Home from './Home';
 import About from './About';
 import Admin from './Admin';
+import AuthenticatingUser from './components/AuthenticatingUser';
 
 const userIsAuthenticated = connectedRouterRedirect({
   redirectPath: '/login',
   authenticatedSelector: ({auth: {user}}) => !!user,
+  authenticatingSelector: ({auth: {user, token}}) => token && !user,
+  AuthenticatingComponent: AuthenticatingUser,
   redirectAction: routerActions.replace,
   wrapperDisplayName: 'UserIsAuthenticated'
 });
