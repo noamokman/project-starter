@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as authActions from '../../../reducers/auth';
+import {localLogin, loadUser} from '../../../reducers/auth';
 import LoginForm from './LoginForm';
 
 class LoginContainer extends Component {
@@ -12,18 +12,13 @@ class LoginContainer extends Component {
   }
 
   componentDidMount () {
-    const {auth, loadUser} = this.props;
+    const {token, loadUser} = this.props;
 
-    if (!auth.token) {
+    if (!token) {
       return;
     }
 
-    loadUser()
-      .then(({error}) => {
-        if (error) {
-          console.log(error);
-        }
-      });
+    loadUser();
   }
 
   login (values) {
@@ -41,6 +36,6 @@ class LoginContainer extends Component {
 }
 
 export default connect(
-  ({auth}) => ({auth}),
-  dispatch => bindActionCreators(authActions, dispatch)
+  ({auth: {token}}) => ({token}),
+  dispatch => bindActionCreators({localLogin, loadUser}, dispatch)
 )(LoginContainer);

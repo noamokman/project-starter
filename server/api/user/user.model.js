@@ -1,6 +1,6 @@
 import pify from 'pify';
 import {Schema} from 'mongoose';
-import emailAddress from 'email-address';
+import {single as emailAddress} from 'email-address';
 import {createSeedModel} from 'mongoose-plugin-seed';
 import seed from './user.seed';
 import passportLocalMongoose from 'passport-local-mongoose';
@@ -17,7 +17,7 @@ const UserSchema = new Schema({
     }
   },
   email: {
-    match: emailAddress.single,
+    match: emailAddress,
     type: String,
     required: true,
     lowercase: true,
