@@ -1,10 +1,10 @@
 import React from 'react';
-import {reduxForm, Field} from 'redux-form';
+import {Field} from 'redux-form';
 import {Card, CardTitle, CardText, CardActions, FlatButton} from 'material-ui';
 import {Flex} from 'reflexbox';
 import TextField from './components/TextField';
 
-const Login = ({handleSubmit}) => (
+export default ({handleSubmit}) => (
   <Flex auto column align='center' justify='center'>
     <form onSubmit={handleSubmit}>
       <Card>
@@ -22,18 +22,3 @@ const Login = ({handleSubmit}) => (
     </form>
   </Flex>
 );
-
-const validate = values => {
-  const errors = ['email', 'password'].reduce((acc, field) => !values[field] ? {...acc, [field]: 'Required'} : acc, {});
-
-  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
-  }
-
-  return errors;
-};
-
-export default reduxForm({
-  form: 'loginForm',
-  validate
-})(Login);

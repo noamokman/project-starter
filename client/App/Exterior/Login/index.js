@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as authActions from '../../../reducers/auth';
-import Login from './Login';
+import LoginForm from './LoginForm';
 
 class LoginContainer extends Component {
   constructor () {
@@ -35,7 +35,7 @@ class LoginContainer extends Component {
 
   render () {
     return (
-      <Login onSubmit={this.login} />
+      <LoginForm onSubmit={this.login} />
     );
   }
 }

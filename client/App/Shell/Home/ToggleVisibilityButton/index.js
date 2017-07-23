@@ -4,11 +4,9 @@ import {bindActionCreators} from 'redux';
 import {toggleVisibility} from '../redux';
 import ToggleVisibilityButton from './ToggleVisibilityButton';
 
-const ToggleVisibilityButtonContainer = ({visibility, toggleVisibility}) => {
-  return (
-    <ToggleVisibilityButton onTouchTap={toggleVisibility} visibility={visibility} />
-  );
-};
+const ToggleVisibilityButtonContainer = ({visibility, toggleVisibility}) => (
+  <ToggleVisibilityButton onTouchTap={toggleVisibility} visibility={visibility} />
+);
 
 export default connect(
   ({home: {visibility}}) => ({visibility}),
