@@ -3,9 +3,8 @@ import {Route, IndexRoute} from 'react-router';
 import {connectedRouterRedirect} from 'redux-auth-wrapper/history3/redirect';
 import {routerActions} from 'react-router-redux';
 import Shell from './index';
-import Home from './Home';
-import About from './About';
-import Admin from './Admin';
+import loadable from 'loadable-components';
+
 import AuthenticatingUser from './components/AuthenticatingUser';
 
 const userIsAuthenticated = connectedRouterRedirect({
@@ -25,6 +24,9 @@ const userIsAdmin = connectedRouterRedirect({
   wrapperDisplayName: 'UserIsAdmin'
 });
 
+const Home = loadable(() => import('./Home'));
+const About = loadable(() => import('./About'));
+const Admin = loadable(() => import(/* webpackChunkName: "admin" */ './Admin'));
 
 export default (
   <Route component={userIsAuthenticated(Shell)}>
