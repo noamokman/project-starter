@@ -1,3 +1,4 @@
+import {join} from 'path';
 import express from 'express';
 import morgan from 'morgan';
 import compression from 'compression';
@@ -10,16 +11,18 @@ import jsonErrorHandler from 'express-json-error-handler';
 import inProduction from 'in-production';
 import routes from './routes';
 import logger from 'env-bunyan';
+import staticGzip from 'express-static-gzip';
 
 export default () => {
   const app = express();
 
-  app.use(compression());
   app.use(urlencoded({extended: false}));
   app.use(json());
   app.use(methodOverride());
   app.use(cookieParser());
   app.use(passport.initialize());
+  app.use(staticGzip(join(__dirname, '..', '..', '..', 'client')));
+  app.use(compression());
 
   if (!inProduction) {
     app.use(morgan('dev'));

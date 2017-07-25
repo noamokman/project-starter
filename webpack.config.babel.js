@@ -4,6 +4,7 @@ import {HotModuleReplacementPlugin, optimize} from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import BabiliPlugin from 'babili-webpack-plugin';
 import PreloadWebpackPlugin from 'preload-webpack-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
 
 export default env => {
   const plugins = [
@@ -20,7 +21,8 @@ export default env => {
     }),
     new optimize.CommonsChunkPlugin({
       name: 'runtime'
-    })
+    }),
+    new CompressionPlugin()
   ];
 
   if (env === 'production') {
