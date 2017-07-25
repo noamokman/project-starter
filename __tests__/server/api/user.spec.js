@@ -120,14 +120,20 @@ describe('User api', () => {
         .expect(403)));
 
     it('should update a diferent user if admin', () => getAuthorizationHeader('morty@gmail.com')
-      .then(token => Promise.all([token, request(server)
-        .get('/api/users/me')
-        .set('Authorization', token)]))
-      .then(([token, {body: {_id}}]) => Promise.all([token, request(server)
-        .put(`/api/users/${_id}`)
-        .send({email: 'lol@gmail.com'})
-        .set('Authorization', authorizationToken)
-        .expect(200)]))
+      .then(token => Promise.all([
+        token,
+        request(server)
+          .get('/api/users/me')
+          .set('Authorization', token)
+      ]))
+      .then(([token, {body: {_id}}]) => Promise.all([
+        token,
+        request(server)
+          .put(`/api/users/${_id}`)
+          .send({email: 'lol@gmail.com'})
+          .set('Authorization', authorizationToken)
+          .expect(200)
+      ]))
       .then(([token]) => request(server)
         .get('/api/users/me')
         .set('Authorization', token))

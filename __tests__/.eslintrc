@@ -1,6 +1,3 @@
 {
-  "extends": "noamokman",
-  "env": {
-    "jest": true
-  }
+  "extends": "noamokman/test"
 }
