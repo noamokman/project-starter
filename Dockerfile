@@ -1,21 +1,33 @@
-FROM node:8-alpine
+FROM node:8-alpine AS base
+
+FROM base AS dependencies
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app
+
+RUN npm install --production
+
+RUN cp -R node_modules prod_node_modules
+
 RUN npm install
 
-COPY . /usr/src/app
+FROM dependencies AS source
+COPY . .
 
+FROM source AS test
 RUN npm run lint
 
+FROM source AS build
 RUN npm run build
-RUN mkdir -p /usr/dist/app
-RUN cp -r /usr/src/app/dist/. /usr/dist/app
 
+FROM base AS release
+RUN mkdir -p /usr/dist/app
 WORKDIR /usr/dist/app
-RUN npm install --production
+
+COPY --from=build /usr/src/app/dist/. /usr/dist/app
+COPY --from=dependencies /usr/src/app/prod_node_modules ./node_modules
 
 ENV PORT 80
 
