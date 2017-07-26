@@ -53,6 +53,18 @@ describe('Todo api', () => {
         expect(body).toHaveProperty('user');
         expect(body).toHaveProperty('_id');
       }));
+
+    it('should trim text todo', () => request(server)
+      .post('/api/todos')
+      .send({text: ' lol '})
+      .set('Authorization', authorizationToken)
+      .expect(201)
+      .then(({body}) => {
+        expect(body).toHaveProperty('text', 'lol');
+        expect(body).toHaveProperty('completed', false);
+        expect(body).toHaveProperty('user');
+        expect(body).toHaveProperty('_id');
+      }));
   });
 
   describe('GET /api/todos/:id', () => {

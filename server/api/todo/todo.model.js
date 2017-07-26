@@ -5,7 +5,8 @@ import seed from './todo.seed';
 const TodoSchema = new Schema({
   text: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   completed: {
     type: Boolean,
