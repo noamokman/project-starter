@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {localLogin, loadUser} from '../../../reducers/auth';
+import {clearError} from './redux';
 import LoginForm from './LoginForm';
 
 class LoginContainer extends Component {
@@ -29,13 +30,15 @@ class LoginContainer extends Component {
   }
 
   render () {
+    const {clearError, error} = this.props;
+
     return (
-      <LoginForm onSubmit={this.login} />
+      <LoginForm onSubmit={this.login} clearError={clearError} loginError={error} />
     );
   }
 }
 
 export default connect(
-  ({auth: {token}}) => ({token}),
-  dispatch => bindActionCreators({localLogin, loadUser}, dispatch)
+  ({auth: {token}, login: {error}}) => ({token, error}),
+  dispatch => bindActionCreators({localLogin, loadUser, clearError}, dispatch)
 )(LoginContainer);
