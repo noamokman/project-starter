@@ -25,6 +25,11 @@ describe('Express routes', () => {
       .get('/')
       .expect(200)
       .expect('Content-Type', /html/));
+
+    it('should get the index.html for /missing-route', () => request(server)
+      .get('/missing-route')
+      .expect(200)
+      .expect('Content-Type', /html/));
   });
 
   describe('GET /api/not-found', () => {
