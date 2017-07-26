@@ -7,11 +7,13 @@ WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app
 
-RUN npm install --production
-
-RUN cp -R node_modules prod_node_modules
 
 RUN npm install
+
+FROM dependencies AS prod-dependencies
+
+RUN rm -rf node_modules
+RUN npm install --production
 
 FROM dependencies AS source
 COPY . .
@@ -27,7 +29,7 @@ RUN mkdir -p /usr/dist/app
 WORKDIR /usr/dist/app
 
 COPY --from=build /usr/src/app/dist/. /usr/dist/app
-COPY --from=dependencies /usr/src/app/prod_node_modules ./node_modules
+COPY --from=prod-dependencies /usr/src/app/node_modules ./node_modules
 
 ENV PORT 80
 
