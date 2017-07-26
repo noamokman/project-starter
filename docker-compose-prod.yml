@@ -1,16 +1,14 @@
 version: '3'
 services:
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile-dev
+    build: .
     ports:
-     - "9090:9090"
-    volumes:
-     - .:/usr/src/app
+     - "9393:80"
     depends_on:
      - mongo
     environment:
      - MONGO_URI=mongodb://mongo/starter
+     - NODE_ENV=production
+     - SESSION_SECRET=secret
   mongo:
     image: mongo

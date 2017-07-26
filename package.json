@@ -20,8 +20,9 @@
     "server-dev": "nodemon --watch server --exec \"babel-node\" server/app.js",
     "client-dev": "webpack-dev-server --open",
     "prod": "npm run build && node dist/server/app.js",
-    "plop": "plop",
-    "webpack": "webpack"
+    "dev-docker": "run-p client-dev-docker server-dev-docker",
+    "client-dev-docker": "webpack-dev-server --host 0.0.0.0 --watch-poll",
+    "server-dev-docker": "npm run server-dev -- -L"
   },
   "repository": {
     "type": "git",
@@ -79,7 +80,6 @@
     "eslint": "^4.3.0",
     "eslint-config-noamokman": "^6.0.0",
     "eslint-plugin-react": "^7.1.0",
-    "express-static-gzip": "^0.3.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.29.0",
     "husky": "^0.14.3",
@@ -136,6 +136,7 @@
     "express-jwt": "^5.3.0",
     "express-mongoose-errors": "^0.2.0",
     "express-param-objectid": "^1.0.0",
+    "express-static-gzip": "^0.3.0",
     "http-errors": "^1.6.1",
     "http-reject-empty": "^1.0.0",
     "in-production": "^1.0.1",
