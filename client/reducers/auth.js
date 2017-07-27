@@ -5,17 +5,18 @@ import {createAction} from 'redux-actions';
 export const LOAD_USER = 'LOAD_USER';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
+export const AUTHORIZE = 'AUTHORIZE';
 
 const initialState = {
   token: localStorage.getItem('token')
 };
 
-export default function auth (state = initialState, {type, payload: {data} = {}}) {
+export default function auth (state = initialState, {type, payload}) {
   switch (type) {
   case resolve(LOGIN):
-    localStorage.setItem('token', data.token);
+    localStorage.setItem('token', payload.data.token);
 
-    return {...state, token: data.token};
+    return {...state, token: payload.data.token};
 
   case LOGOUT:
   case reject(LOAD_USER):
@@ -24,7 +25,7 @@ export default function auth (state = initialState, {type, payload: {data} = {}}
     return {};
 
   case resolve(LOAD_USER):
-    return {...state, user: data};
+    return {...state, user: payload.data};
 
   default:
     return state;
@@ -40,6 +41,13 @@ export const localLogin = createAction(LOGIN, ({email, password}) => ({
       email,
       password
     }
+  }
+}));
+
+export const authorize = createAction(AUTHORIZE, () => ({
+  socket: {
+    emitName: 'authenticate',
+    data: ({auth: {token}}) => ({token})
   }
 }));
 

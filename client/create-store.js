@@ -6,6 +6,7 @@ import {persistState} from 'redux-devtools';
 import {routerMiddleware} from 'react-router-redux';
 import axios from 'axios';
 import {multiClientMiddleware} from 'redux-axios-middleware';
+import createSocketIoMiddleware from './redux-sockets';
 
 export default (history, initialState = {}) => {
   const suffixes = {
@@ -48,7 +49,7 @@ export default (history, initialState = {}) => {
     rootReducer,
     initialState,
     compose(
-      applyMiddleware(promiseMiddleware(), multiClientMiddleware(axiosConfig), routerMiddleware(history)),
+      applyMiddleware(createSocketIoMiddleware(), promiseMiddleware(), multiClientMiddleware(axiosConfig), routerMiddleware(history)),
       window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
       persistState(
         window.location.href.match(/[?&]debug_session=([^&]+)\b/)

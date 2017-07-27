@@ -1,13 +1,16 @@
 import {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as authActions from '../../../../reducers/auth';
+import {loadUser, authorize} from '../../../../reducers/auth';
+import {socketConnect} from '../../../../socket-reducer';
 
 class AuthenticatingUser extends Component {
   componentDidMount () {
-    const {loadUser} = this.props;
+    const {loadUser, authorize, socketConnect} = this.props;
 
-    loadUser();
+    loadUser()
+      .then(socketConnect)
+      .then(authorize);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -18,5 +21,5 @@ class AuthenticatingUser extends Component {
 
 export default connect(
   null,
-  dispatch => bindActionCreators(authActions, dispatch)
+  dispatch => bindActionCreators({loadUser, authorize, socketConnect}, dispatch)
 )(AuthenticatingUser);

@@ -149,7 +149,7 @@ describe('Todo api', () => {
 
     it('should update a todo', () => request(server)
       .put(`/api/todos/${todo._id}`)
-      .send({text: 'yay'})
+      .send({completed: true})
       .set('Authorization', authorizationToken)
       .expect(200)
       .then(({body}) => {
@@ -160,8 +160,8 @@ describe('Todo api', () => {
         .set('Authorization', authorizationToken)
         .expect(200))
       .then(({body}) => {
-        expect(body).toHaveProperty('text', 'yay');
-        expect(body).toHaveProperty('completed', todo.completed);
+        expect(body).toHaveProperty('text', todo.text);
+        expect(body).toHaveProperty('completed', true);
         expect(body).toHaveProperty('user', todo.user._id);
         expect(body).toHaveProperty('_id');
       }));

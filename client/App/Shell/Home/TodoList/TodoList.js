@@ -17,7 +17,7 @@ export default ({todos, completeTodo, deleteTodo, activeTodos}) => (
       <ScrollableDiv>
         {todos.map(todo => (
           <TodoItem
-            key={todo.id}
+            key={todo._id}
             todo={todo}
             completeTodo={completeTodo}
             deleteTodo={deleteTodo}

@@ -33,11 +33,7 @@ export default env => {
   return {
     entry: {
       main: './client/index.js',
-      vendor: [
-        'lodash',
-        'react',
-        'material-ui'
-      ]
+      vendor: ['lodash', 'react', 'material-ui']
     },
     output: {
       path: resolve(__dirname, './dist/client'),
@@ -79,6 +75,9 @@ export default env => {
           target: `http://localhost:${process.env.PORT}`
         },
         '/auth': {
+          target: `http://localhost:${process.env.PORT}`
+        },
+        '/ws': {
           target: `http://localhost:${process.env.PORT}`
         }
       }

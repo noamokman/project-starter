@@ -13,15 +13,15 @@ export default class TodoItem extends Component {
   }
 
   handleDelete () {
-    const {todo: {id}, deleteTodo} = this.props;
+    const {todo: {_id}, deleteTodo} = this.props;
 
-    deleteTodo(id);
+    deleteTodo(_id);
   }
 
   handleComplete () {
-    const {todo: {id}, completeTodo} = this.props;
+    const {todo: {_id, completed}, completeTodo} = this.props;
 
-    completeTodo(id);
+    completeTodo(_id, !completed);
   }
 
   renderDeleteButton () {

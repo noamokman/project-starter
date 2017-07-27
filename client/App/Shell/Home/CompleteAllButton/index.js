@@ -1,17 +1,34 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {completeAll} from '../redux';
 import CompleteAllButton from './CompleteAllButton';
 
-const CompleteAllButtonContainer = ({todos, completeAll}) => {
-  const checked = todos.every(({completed}) => completed);
-  const disabled = !todos.length;
+class CompleteAllButtonContainer extends Component {
+  constructor () {
+    super();
 
-  return (
-    <CompleteAllButton onTouchTap={completeAll} checked={checked} disabled={disabled} />
-  );
-};
+    this.completeAll = this.completeAll.bind(this);
+  }
+
+  get checked () {
+    return this.props.todos.every(({completed}) => completed);
+  }
+
+  completeAll () {
+    const {completeAll} = this.props;
+
+    completeAll(!this.checked);
+  }
+
+  render () {
+    const disabled = !this.props.todos.length;
+
+    return (
+      <CompleteAllButton onTouchTap={this.completeAll} checked={this.checked} disabled={disabled} />
+    );
+  }
+}
 
 export default connect(
   ({home: {todos}}) => ({todos}),

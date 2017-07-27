@@ -113,6 +113,7 @@
     "redux-simple-promise": "^2.0.2",
     "reflexbox": "^3.0.0-0",
     "rimraf": "^2.6.1",
+    "socket.io-client": "^2.0.3",
     "style-loader": "^0.18.2",
     "styled-components": "^2.1.1",
     "supertest": "^3.0.0",
@@ -148,6 +149,9 @@
     "morgan": "^1.8.2",
     "passport": "^0.3.2",
     "passport-local-mongoose": "^4.0.0",
-    "pify": "^3.0.0"
+    "pify": "^3.0.0",
+    "socket.io": "^2.0.3",
+    "socketio-jwt": "^4.5.0",
+    "socketio-wildcard": "^2.0.0"
   }
 }
