@@ -20,7 +20,10 @@ const expressStarted = new Promise(resolve => {
   socketConfig(server);
 });
 
-export const started = Promise.all([mongoStarted, expressStarted]);
+export const started = Promise.all([
+  mongoStarted,
+  expressStarted
+]);
 
 export const close = () => {
   server.close();

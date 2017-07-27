@@ -126,7 +126,10 @@ describe('User api', () => {
           .get('/api/users/me')
           .set('Authorization', token)
       ]))
-      .then(([token, {body: {_id}}]) => Promise.all([
+      .then(([
+        token,
+        {body: {_id}}
+      ]) => Promise.all([
         token,
         request(server)
           .put(`/api/users/${_id}`)

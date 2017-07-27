@@ -17,7 +17,10 @@ export function update ({user, params: {id}, body}) {
     return Promise.reject(createError(403));
   }
 
-  const data = _.pick(body, ['name', 'email']);
+  const data = _.pick(body, [
+    'name',
+    'email'
+  ]);
 
   return User.findByIdAndUpdate(id, {$set: data})
     .then(empty)

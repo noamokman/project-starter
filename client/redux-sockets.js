@@ -12,7 +12,10 @@ export default ({createSocket = defaultCreateSocket} = {}) => {
     wildcard(io.Manager)(socket);
 
     socket.on('*', ({data}) => {
-      const [type, payload = {}] = data;
+      const [
+        type,
+        payload = {}
+      ] = data;
 
       dispatch({
         type: `server/${type}`,

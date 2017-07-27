@@ -31,7 +31,10 @@ export default function (state = initialState, {type, payload}) {
   case TODO_SAVE:
     return {
       ...state,
-      todos: [payload, ...state.todos]
+      todos: [
+        payload,
+        ...state.todos
+      ]
     };
   case TODO_UPDATE:
     return {
