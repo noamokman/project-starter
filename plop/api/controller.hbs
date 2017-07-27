@@ -26,8 +26,7 @@ export function create ({body}, res) {
 export function update ({params: {id}, body}) {
   const data = _.pick(body, ['name']);
 
-  return {{properCase name}}.update({_id: id}, {$set: data})
-    .then(({n}) => n)
+  return {{properCase name}}.findOneAndUpdate({_id: id}, {$set: data}, {new: true})
     .then(empty)
     .then(_.noop);
 }
