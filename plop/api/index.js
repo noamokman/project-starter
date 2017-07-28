@@ -20,6 +20,11 @@ export default plop => {
         type: 'confirm',
         name: 'auth',
         message: 'Do you want to add auth?'
+      },
+      {
+        type: 'confirm',
+        name: 'socket',
+        message: 'Do you want to add sockets?'
       }
     ],
     actions: [
@@ -49,6 +54,11 @@ export default plop => {
         templateFile: 'plop/api/seed.hbs'
       },
       {
+        type: 'add',
+        path: 'server/api/{{name}}/{{name}}.socket.js',
+        templateFile: 'plop/api/socket.hbs'
+      },
+      {
         type: 'modify',
         path: 'server/config/express/routes.js',
         pattern: /(\/\/ inject:route-imports)/gi,
@@ -56,9 +66,21 @@ export default plop => {
       },
       {
         type: 'modify',
+        path: 'server/config/socket.js',
+        pattern: /(\/\/ inject:socket-imports)/gi,
+        template: '$1\r\nimport {{name}}Socket from \'../api/{{name}}/{{name}}.socket\';'
+      },
+      {
+        type: 'modify',
         path: 'server/config/express/routes.js',
         pattern: /(\/\/ inject:route-usage)/gi,
         template: '$1\r\n  app.use(\'/api/{{plur name}}\', {{name}}Route);'
+      },
+      {
+        type: 'modify',
+        path: 'server/config/socket.js',
+        pattern: /(\/\/ inject:socket-usage)/gi,
+        template: '$1\r\n  {{name}}Socket(getSockets);'
       }
     ]
   });

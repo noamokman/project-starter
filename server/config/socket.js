@@ -3,6 +3,7 @@ import socketioJwt from 'socketio-jwt';
 import middleware from 'socketio-wildcard';
 import _ from 'lodash';
 
+// inject:socket-imports
 import todoSocket from '../api/todo/todo.socket';
 
 export default server => {
@@ -22,5 +23,6 @@ export default server => {
     .filter(socket => socket.decoded_token)
     .filter(({decoded_token: {_id}}) => filter(_id));
 
+  // inject:socket-usage
   todoSocket(getSockets);
 };
