@@ -2,9 +2,7 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {blue500} from 'material-ui/styles/colors';
-import DevTools from '../components/DevTools';
 import {Flex} from 'reflexbox';
-import inProduction from 'in-production';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -12,11 +10,21 @@ const muiTheme = getMuiTheme({
   }
 });
 
-export default ({children}) => (
-  <MuiThemeProvider muiTheme={muiTheme}>
-    <Flex auto>
-      {children}
-      {!inProduction && (window.devToolsExtension ? null : <DevTools />)}
-    </Flex>
-  </MuiThemeProvider>
-);
+export default ({children}) => {
+  let devTools = null;
+
+  if (process.env.NODE_ENV !== 'production' && !window.devToolsExtension) {
+    const DevTools = require('../components/DevTools').default;
+
+    devTools = <DevTools />;
+  }
+
+  return (
+    <MuiThemeProvider muiTheme={muiTheme}>
+      <Flex auto>
+        {children}
+        {devTools}
+      </Flex>
+    </MuiThemeProvider>
+  );
+};

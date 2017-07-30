@@ -5,7 +5,6 @@ import {routerMiddleware} from 'react-router-redux';
 import axios from 'axios';
 import {multiClientMiddleware} from 'redux-axios-middleware';
 import createSocketIoMiddleware from './redux-sockets';
-import inProduction from 'in-production';
 
 export default (history, initialState = {}) => {
   const suffixes = {
@@ -44,26 +43,23 @@ export default (history, initialState = {}) => {
     }
   };
 
-  const middlewares = [
-    createSocketIoMiddleware(),
-    promiseMiddleware(),
-    multiClientMiddleware(axiosConfig),
-    routerMiddleware(history)
+  const params = [
+    applyMiddleware(
+      createSocketIoMiddleware(),
+      promiseMiddleware(),
+      multiClientMiddleware(axiosConfig),
+      routerMiddleware(history)
+    )
   ];
 
-  if (!inProduction) {
+  if (process.env.NODE_ENV !== 'production') {
     const DevTools = require('./components/DevTools').default;
     const {persistState} = require('redux-devtools');
 
-    return createStore(
-      rootReducer,
-      initialState,
-      compose(
-        applyMiddleware(...middlewares),
-        window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
-        persistState(
-          window.location.href.match(/[?&]debug_session=([^&]+)\b/)
-        )
+    params.push(
+      window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
+      persistState(
+        window.location.href.match(/[?&]debug_session=([^&]+)\b/)
       )
     );
   }
@@ -71,6 +67,6 @@ export default (history, initialState = {}) => {
   return createStore(
     rootReducer,
     initialState,
-    compose(applyMiddleware(...middlewares))
+    compose(...params)
   );
 };
