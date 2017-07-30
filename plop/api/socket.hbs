@@ -4,32 +4,22 @@ export const emitter = new EventEmitter();
 
 export default getSockets => {
   emitter.on('save', doc => {
-{{#if auth}}
-    getSockets(_id => doc.user.equals(_id))
-{{else}}
     getSockets()
-{{/if}}
       .forEach(socket => {
         socket.emit('{{constantCase name}}_SAVE', doc);
       });
   });
 
   emitter.on('findOneAndUpdate', doc => {
-{{#if auth}}
-    getSockets(_id => doc.user.equals(_id))
-{{else}}
     getSockets()
-{{/if}}      .forEach(socket => {
+      .forEach(socket => {
         socket.emit('{{constantCase name}}_UPDATE', doc);
       });
   });
 
   emitter.on('findOneAndRemove', doc => {
-{{#if auth}}
-    getSockets(_id => doc.user.equals(_id))
-{{else}}
     getSockets()
-{{/if}}      .forEach(socket => {
+      .forEach(socket => {
         socket.emit('{{constantCase name}}_DELETE', doc);
       });
   });

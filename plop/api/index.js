@@ -12,9 +12,7 @@ export default plop => {
         type: 'input',
         name: 'name',
         message: 'What is the name of your api?',
-        validate (value) {
-          return value.length ? true : 'name is required';
-        }
+        validate: ({length}) => length ? true : 'name is required'
       },
       {
         type: 'confirm',
