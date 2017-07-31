@@ -8,8 +8,7 @@
           "browsers": [
             "last 2 versions"
           ]
-        },
-        "modules": false
+        }
       }
     ]
   ],
@@ -17,10 +16,5 @@
     "transform-object-rest-spread",
     "lodash",
     "syntax-dynamic-import"
-  ],
-  "env": {
-    "test": {
-      "plugins": ["dynamic-import-node", "transform-es2015-modules-commonjs"]
-    }
-  }
+  ]
 }

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component should render properly 1`] = `
+<div
+  className="_Rfx0_ _Rfx1_"
+/>
+`;
