@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {localLogin, loadUser, authorize} from '../../../reducers/auth';
 import {clearError} from './redux';
-import {socketConnect} from '../../../socket-reducer';
+import {socketConnect} from 'redux-sockets';
 import LoginForm from './LoginForm';
 
 class LoginContainer extends Component {

@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 import {routerReducer as routing} from 'react-router-redux';
 import {reducer as form} from 'redux-form';
 import auth from './reducers/auth';
-import socket from './socket-reducer';
+import {reducer as socket} from 'redux-sockets';
 import home from './App/Shell/Home/redux';
 import login from './App/Exterior/Login/redux';
 

@@ -4,7 +4,7 @@ import rootReducer from './reducer';
 import {routerMiddleware} from 'react-router-redux';
 import axios from 'axios';
 import {multiClientMiddleware} from 'redux-axios-middleware';
-import createSocketIoMiddleware from './redux-sockets';
+import socketIoMiddleware from 'redux-sockets';
 
 export default (history, initialState = {}) => {
   const suffixes = {
@@ -45,7 +45,7 @@ export default (history, initialState = {}) => {
 
   const params = [
     applyMiddleware(
-      createSocketIoMiddleware(),
+      socketIoMiddleware(),
       promiseMiddleware(),
       multiClientMiddleware(axiosConfig),
       routerMiddleware(history)

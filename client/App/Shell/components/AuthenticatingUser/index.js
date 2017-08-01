@@ -2,7 +2,7 @@ import {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {loadUser, authorize} from '../../../../reducers/auth';
-import {socketConnect} from '../../../../socket-reducer';
+import {socketConnect} from 'redux-sockets';
 
 class AuthenticatingUser extends Component {
   componentDidMount () {
