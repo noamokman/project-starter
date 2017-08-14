@@ -3,16 +3,17 @@ import {reject, resolve} from 'redux-simple-promise';
 import {LOGIN} from '../../../../../client/reducers/auth';
 
 describe('Login redux', () => {
-  describe('Reducer', () => {
-    it('login rejected should return error', () => {
+  describe('reducer', () => {
+    it('should return error on login rejected', () => {
       const initialState = {};
-      const action = {type: reject(LOGIN), error: {response: {data: {message: 'some error'}}}};
+      const message = 'some error';
+      const action = {type: reject(LOGIN), error: {response: {data: {message}}}};
       const state = reducer(initialState, action);
 
-      expect(state).toHaveProperty('error');
+      expect(state).toHaveProperty('error', message);
     });
 
-    it('login resolved should return empty object', () => {
+    it('should return empty object on login resolved', () => {
       const initialState = {};
       const action = {type: resolve(LOGIN)};
       const state = reducer(initialState, action);
@@ -20,23 +21,23 @@ describe('Login redux', () => {
       expect(initialState).toEqual(state);
     });
 
-    it('clear error should return empty object', () => {
+    it('should return empty object on clear error', () => {
       const initialState = {};
-      const action = {type: CLEAR_ERROR};
+      const action = clearError();
       const state = reducer(initialState, action);
 
       expect(initialState).toEqual(state);
     });
 
-    it('unknown action should return empty object', () => {
+    it('should return empty object on unknown action', () => {
       const initialState = {};
       const action = {type: 'UNKNOWN_ACTION'};
       const state = reducer(initialState, action);
 
-      expect(state).toEqual(initialState);
+      expect(state).toBe(initialState);
     });
 
-    it('no initial state should return empty object', () => {
+    it('should return empty object on no initial state', () => {
       const expectedState = {};
       const action = {type: 'UNKNOWN_ACTION'};
       const state = reducer(undefined, action); // eslint-disable-line no-undefined
@@ -45,7 +46,7 @@ describe('Login redux', () => {
     });
   });
 
-  describe('Action creator', () => {
+  describe('actions', () => {
     it('should create an action to clear error', () => {
       const expectedAction = {
         type: CLEAR_ERROR

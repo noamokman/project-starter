@@ -7,9 +7,9 @@ export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const AUTHORIZE = 'AUTHORIZE';
 
-const initialState = {
-  token: localStorage.getItem('token')
-};
+const token = localStorage.getItem('token');
+
+const initialState = token ? {token} : {};
 
 export default function auth (state = initialState, {type, payload}) {
   switch (type) {
