@@ -65,12 +65,19 @@ describe('Auth redux', () => {
       expect(state).toBe(initialState);
     });
 
-    it('should return empty object on no initial state', () => {
-      const expectedState = {};
+    it('should load token to initial state', () => {
+      const expectedState = {token: 'token'};
       const action = {type: 'UNKNOWN_ACTION'};
+
+      localStorage.setItem('token', 'token');
+
+      jest.resetModules();
+      const reducer = require('../../../client/reducers/auth').default;
+
       const state = reducer(undefined, action); // eslint-disable-line no-undefined
 
       expect(state).toEqual(expectedState);
+      localStorage.removeItem('token');
     });
   });
 
