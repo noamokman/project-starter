@@ -1,14 +1,10 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {blue500} from 'material-ui/styles/colors';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import {Flex} from 'reflexbox';
 
-const muiTheme = getMuiTheme({
-  palette: {
-    primary1Color: blue500
-  }
-});
+const muiTheme = getMuiTheme(lightBaseTheme);
 
 export default ({children}) => {
   let devTools = null;
