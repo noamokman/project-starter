@@ -2,7 +2,7 @@ import 'dotenv-extended/config';
 import {resolve} from 'path';
 import {HotModuleReplacementPlugin, optimize} from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import BabiliPlugin from 'babili-webpack-plugin';
+import MinifyPlugin from 'babel-minify-webpack-plugin';
 import PreloadWebpackPlugin from 'preload-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
 
@@ -14,7 +14,10 @@ export default env => {
     }),
     new PreloadWebpackPlugin({
       rel: 'prefetch',
-      fileBlacklist: [/\.map/, /\.\/admin\.[a-f0-9]{20}\.js$/]
+      fileBlacklist: [
+        /\.map/,
+        /\.\/admin\.[a-f0-9]{20}\.js$/
+      ]
     }),
     new optimize.CommonsChunkPlugin({
       name: 'vendor'
@@ -26,14 +29,18 @@ export default env => {
   ];
 
   if (env === 'production') {
-    plugins.push(new BabiliPlugin());
+    plugins.push(new MinifyPlugin());
     plugins.push(new optimize.ModuleConcatenationPlugin());
   }
 
   return {
     entry: {
       main: './client/index.js',
-      vendor: ['lodash', 'react', 'material-ui']
+      vendor: [
+        'lodash',
+        'react',
+        'material-ui'
+      ]
     },
     output: {
       path: resolve(__dirname, './dist/client'),
@@ -45,7 +52,10 @@ export default env => {
       rules: [
         {
           test: /\.css$/,
-          use: ['style-loader', 'css-loader']
+          use: [
+            'style-loader',
+            'css-loader'
+          ]
         },
         {
           test: /\.js$/,
