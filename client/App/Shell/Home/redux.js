@@ -2,18 +2,18 @@ import {createAction} from 'redux-actions';
 import {resolve} from 'redux-simple-promise';
 import _ from 'lodash';
 
-const TOGGLE_VISIBILITY = 'TOGGLE_VISIBILITY';
-const ADD_TODO = 'ADD_TODO';
-const LOAD_TODOS = 'LOAD_TODOS';
-const DELETE_TODO = 'DELETE_TODO';
-const TODO_SAVE = 'server/TODO_SAVE';
-const TODO_UPDATE = 'server/TODO_UPDATE';
-const TODO_COMPLETE_ALL = 'server/TODO_COMPLETE_ALL';
-const TODO_DELETE = 'server/TODO_DELETE';
-const COMPLETE_TODO = 'COMPLETE_TODO';
-const COMPLETE_ALL = 'COMPLETE_ALL';
-const TODO_CLEAR_COMPLETED = 'server/TODO_CLEAR_COMPLETED';
-const CLEAR_COMPLETED = 'CLEAR_COMPLETED';
+export const TOGGLE_VISIBILITY = 'TOGGLE_VISIBILITY';
+export const ADD_TODO = 'ADD_TODO';
+export const LOAD_TODOS = 'LOAD_TODOS';
+export const DELETE_TODO = 'DELETE_TODO';
+export const TODO_SAVE = 'server/TODO_SAVE';
+export const TODO_UPDATE = 'server/TODO_UPDATE';
+export const TODO_COMPLETE_ALL = 'server/TODO_COMPLETE_ALL';
+export const TODO_DELETE = 'server/TODO_DELETE';
+export const COMPLETE_TODO = 'COMPLETE_TODO';
+export const COMPLETE_ALL = 'COMPLETE_ALL';
+export const TODO_CLEAR_COMPLETED = 'server/TODO_CLEAR_COMPLETED';
+export const CLEAR_COMPLETED = 'CLEAR_COMPLETED';
 
 const initialState = {
   todos: [],
