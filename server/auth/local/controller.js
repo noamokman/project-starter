@@ -8,7 +8,7 @@ export function index (req, res, next) {
     if (error) {
       const errMap = {
         'Missing credentials': 400,
-        'Password or username are incorrect': 401
+        'Password or username is incorrect': 401
       };
 
       error.status = errMap[error.message];
