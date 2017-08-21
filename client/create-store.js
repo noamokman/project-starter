@@ -6,43 +6,44 @@ import axios from 'axios';
 import {multiClientMiddleware} from 'redux-axios-middleware';
 import socketIoMiddleware from 'redux-sockets';
 
-export default (history, initialState = {}) => {
-  const suffixes = {
-    successSuffix: resolve(''),
-    errorSuffix: reject('')
-  };
-  const axiosConfig = {
-    default: {
-      client: axios.create({
-        baseURL: '/api',
-        responseType: 'json'
-      }),
-      options: {
-        ...suffixes,
-        interceptors: {
-          request: [
-            ({getState}, config) => {
-              const {auth: {token}} = getState();
+const suffixes = {
+  successSuffix: resolve(''),
+  errorSuffix: reject('')
+};
 
-              if (token) {
-                config.headers.Authorization = `Bearer ${token}`;
-              }
+export const axiosConfig = {
+  default: {
+    client: axios.create({
+      baseURL: '/api',
+      responseType: 'json'
+    }),
+    options: {
+      ...suffixes,
+      interceptors: {
+        request: [
+          ({getState}, config) => {
+            const {auth: {token}} = getState();
 
-              return config;
+            if (token) {
+              config.headers.Authorization = `Bearer ${token}`;
             }
-          ]
-        }
-      }
-    },
-    auth: {
-      client: axios.create({
-        baseURL: '/auth',
-        responseType: 'json'
-      }),
-      options: suffixes
-    }
-  };
 
+            return config;
+          }
+        ]
+      }
+    }
+  },
+  auth: {
+    client: axios.create({
+      baseURL: '/auth',
+      responseType: 'json'
+    }),
+    options: suffixes
+  }
+};
+
+export default (history, initialState = {}) => {
   const params = [
     applyMiddleware(
       socketIoMiddleware(),
