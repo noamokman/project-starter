@@ -1,9 +1,9 @@
 import React from 'react';
-import App from '../../../client/App';
+import Shell from '../../../../client/App/Shell';
 import {shallow} from 'enzyme';
 
-describe('App component', () => {
+describe('Shell component', () => {
   it('renders without crashing', () => {
-    shallow(<App />);
+    shallow(<Shell />);
   });
 });
