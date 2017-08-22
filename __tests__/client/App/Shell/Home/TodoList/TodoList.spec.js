@@ -4,6 +4,8 @@ import TodoList from '../../../../../../client/App/Shell/Home/TodoList/TodoList'
 
 describe('TodoList component', () => {
   it('renders without crashing', () => {
-    shallow(<TodoList />);
+    const todos = [{_id: '1', content: '1', completed: false}];
+
+    shallow(<TodoList todos={todos} />);
   });
 });

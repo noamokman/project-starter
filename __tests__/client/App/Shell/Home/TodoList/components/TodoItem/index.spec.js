@@ -4,6 +4,8 @@ import TodoItem from '../../../../../../../../client/App/Shell/Home/TodoList/com
 
 describe('TodoItem component', () => {
   it('renders without crashing', () => {
-    shallow(<TodoItem />);
+    const todo = {_id: '1', completed: false};
+
+    shallow(<TodoItem todo={todo} />);
   });
 });
