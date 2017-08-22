@@ -11,7 +11,7 @@ const suffixes = {
   errorSuffix: reject('')
 };
 
-export const axiosConfig = {
+export const createAxiosConfig = () => ({
   default: {
     client: axios.create({
       baseURL: '/api',
@@ -41,14 +41,14 @@ export const axiosConfig = {
     }),
     options: suffixes
   }
-};
+});
 
 export default (history, initialState = {}) => {
   const params = [
     applyMiddleware(
       socketIoMiddleware(),
       promiseMiddleware(),
-      multiClientMiddleware(axiosConfig),
+      multiClientMiddleware(createAxiosConfig()),
       routerMiddleware(history)
     )
   ];
