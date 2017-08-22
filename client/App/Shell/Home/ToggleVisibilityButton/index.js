@@ -5,7 +5,7 @@ import {toggleVisibility} from '../redux';
 import ToggleVisibilityButton from './ToggleVisibilityButton';
 
 const ToggleVisibilityButtonContainer = ({visibility, toggleVisibility}) => (
-  <ToggleVisibilityButton onTouchTap={toggleVisibility} visibility={visibility} />
+  <ToggleVisibilityButton onClick={toggleVisibility} visibility={visibility} />
 );
 
 export default connect(

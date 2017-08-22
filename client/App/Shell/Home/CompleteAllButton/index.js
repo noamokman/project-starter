@@ -25,7 +25,7 @@ class CompleteAllButtonContainer extends Component {
     const disabled = !this.props.todos.length;
 
     return (
-      <CompleteAllButton onTouchTap={this.completeAll} checked={this.checked} disabled={disabled} />
+      <CompleteAllButton onClick={this.completeAll} checked={this.checked} disabled={disabled} />
     );
   }
 }

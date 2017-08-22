@@ -9,15 +9,15 @@ export default ({onLogout, onAbout, onAdmin, admin}) => (
   <Flex auto>
     {
       admin && (
-        <IconButton tooltip='Admin' onTouchTap={onAdmin}>
+        <IconButton tooltip='Admin' onClick={onAdmin}>
           <SocialPerson color='white' />
         </IconButton>
       )
     }
-    <IconButton tooltip='About' onTouchTap={onAbout}>
+    <IconButton tooltip='About' onClick={onAbout}>
       <ActionHelp color='white' />
     </IconButton>
-    <IconButton tooltip='Logout' onTouchTap={onLogout}>
+    <IconButton tooltip='Logout' onClick={onLogout}>
       <ActionExitToApp color='white' />
     </IconButton>
   </Flex>

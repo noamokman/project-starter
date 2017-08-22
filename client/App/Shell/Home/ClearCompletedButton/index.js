@@ -8,7 +8,7 @@ const ClearCompletedButtonContainer = ({todos, clearCompleted}) => {
   const disabled = !todos.some(({completed}) => completed);
 
   return (
-    <ClearCompletedButton disabled={disabled} onTouchTap={clearCompleted} />
+    <ClearCompletedButton disabled={disabled} onClick={clearCompleted} />
   );
 };
 
