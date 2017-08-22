@@ -34,6 +34,8 @@ describe('Express config', () => {
     });
 
     it('should not use morgan on production', () => {
+      const env = process.env.NODE_ENV;
+
       process.env.NODE_ENV = 'production';
 
       const {default: createApp} = require('../../../../server/config/express');
@@ -41,6 +43,8 @@ describe('Express config', () => {
       expect(createApp).toBeInstanceOf(Function);
       expect(createApp()).toHaveProperty('use');
       expect(mockMorgan).not.toHaveBeenCalled();
+
+      process.env.NODE_ENV = env;
     });
   });
 });
