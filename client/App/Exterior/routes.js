@@ -3,7 +3,7 @@ import {Route} from 'react-router';
 import locationHelperBuilder from 'redux-auth-wrapper/history3/locationHelper';
 import {connectedRouterRedirect} from 'redux-auth-wrapper/history3/redirect';
 import {routerActions} from 'react-router-redux';
-import Exterior from './index';
+import Exterior from './';
 import Login from './Login';
 
 const locationHelper = locationHelperBuilder({});

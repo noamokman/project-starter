@@ -47,6 +47,7 @@
   },
   "jest": {
     "notify": true,
+    "testURL": "http://localhost",
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
     "collectCoverage": true,
     "setupFiles": [
