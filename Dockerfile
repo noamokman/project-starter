@@ -19,7 +19,7 @@ FROM dependencies AS source
 COPY . .
 
 FROM source AS test
-RUN npm run lint
+RUN npm run lint && npm run jest-client
 
 FROM source AS build
 RUN npm run build
