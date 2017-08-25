@@ -13,8 +13,9 @@
     "build": "rimraf lib && npm run babel",
     "prepublishOnly": "npm run build",
     "test": "run-s lint test-dump",
-    "dump": "npm run build && rimraf dump && node bin/project-starter dump",
-    "test-dump": "npm run dump && cd dump && npm install && npm run lint && npm run jest-client"
+    "dump": "npm run build && rimraf dump && node bin/project-starter dump/starter",
+    "test-dump": "npm run dump && cd dump/starter && npm install && npm run lint && npm run jest-client",
+    "release-module": "git-directory-deploy --email travis@travis-ci.org --user 'Travis CI' --directory dump/starter --branch master --repo https://$GH_TOKEN@github.com/noamokman/project-starter-sample.git"
   },
   "repository": {
     "type": "git",
@@ -47,6 +48,7 @@
     "babel-preset-env": "^1.6.0",
     "eslint": "^4.5.0",
     "eslint-config-noamokman": "^6.0.1",
+    "git-directory-deploy": "^1.5.1",
     "husky": "^0.14.3",
     "lint-staged": "^4.0.4",
     "npm-run-all": "^4.0.2",
