@@ -14,7 +14,7 @@
     "prepublishOnly": "npm run build",
     "test": "run-s lint test-dump",
     "dump": "npm run build && rimraf dump && node bin/project-starter dump",
-    "test-dump": "npm run dump && cd dump && npm install && npm run lint && npm run test-client"
+    "test-dump": "npm run dump && cd dump && npm install && npm run lint && npm run jest-client"
   },
   "repository": {
     "type": "git",
