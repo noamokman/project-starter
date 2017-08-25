@@ -6,8 +6,8 @@
   "scripts": {
     "test": "npm run lint && npm run jest",
     "jest": "jest",
-    "jest-client": "jest -- --testMatch **/__tests__/client/**/*.spec.js",
-    "jest-server": "jest -- --testMatch **/__tests__/server/**/*.spec.js",
+    "jest-client": "jest --testMatch **/__tests__/client/**/*.spec.js",
+    "jest-server": "jest --testMatch **/__tests__/server/**/*.spec.js",
     "babel": "babel server -d dist/server -s",
     "copy": "copyfiles package.json .env.defaults .env.schema dist",
     "build": "rimraf dist && npm run babel && npm run build-client && npm run copy",
