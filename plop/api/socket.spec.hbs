@@ -1,4 +1,4 @@
-import todoSocket, {emitter} from '../../../server/api/todo/todo.socket';
+import {{name}}Socket, {emitter} from '../../../server/api/{{name}}/{{name}}.socket';
 import EventEmitter from 'events';
 
 const socket = {emit: jest.fn()};
@@ -8,10 +8,10 @@ const getSockets = (filter = () => true) => {
   return [socket];
 };
 
-describe('Todo socket', () => {
+describe('{{properCase name}} socket', () => {
   describe('exports', () => {
     it('should expose default function', () => {
-      expect(typeof todoSocket).toBe('function');
+      expect(typeof {{name}}Socket).toBe('function');
     });
 
     it('should expose an event emitter', () => {
@@ -21,13 +21,11 @@ describe('Todo socket', () => {
 
   describe('socket function', () => {
     it('should listen on events', () => {
-      todoSocket(getSockets);
+      {{name}}Socket(getSockets);
 
       expect(emitter._events).toHaveProperty('save');
       expect(emitter._events).toHaveProperty('findOneAndUpdate');
       expect(emitter._events).toHaveProperty('findOneAndRemove');
-      expect(emitter._events).toHaveProperty('completeAll');
-      expect(emitter._events).toHaveProperty('clearCompleted');
     });
   });
 
@@ -41,31 +39,19 @@ describe('Todo socket', () => {
     it('should handle save event', () => {
       emitter.emit('save', doc);
 
-      expect(socket.emit).toHaveBeenCalledWith('TODO_SAVE', doc);
+      expect(socket.emit).toHaveBeenCalledWith('{{upperCase name}}_SAVE', doc);
     });
 
     it('should handle findOneAndUpdate event', () => {
       emitter.emit('findOneAndUpdate', doc);
 
-      expect(socket.emit).toHaveBeenCalledWith('TODO_UPDATE', doc);
+      expect(socket.emit).toHaveBeenCalledWith('{{upperCase name}}_UPDATE', doc);
     });
 
     it('should handle findOneAndRemove event', () => {
       emitter.emit('findOneAndRemove', doc);
 
-      expect(socket.emit).toHaveBeenCalledWith('TODO_DELETE', doc);
-    });
-
-    it('should handle completeAll event', () => {
-      emitter.emit('completeAll', doc);
-
-      expect(socket.emit).toHaveBeenCalledWith('TODO_COMPLETE_ALL', {completed: true});
-    });
-
-    it('should handle clearCompleted event', () => {
-      emitter.emit('clearCompleted', doc);
-
-      expect(socket.emit).toHaveBeenCalledWith('TODO_CLEAR_COMPLETED');
+      expect(socket.emit).toHaveBeenCalledWith('{{upperCase name}}_DELETE', doc);
     });
   });
 });
