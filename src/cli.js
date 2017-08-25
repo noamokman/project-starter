@@ -9,7 +9,7 @@ const notifier = updateNotifier({pkg});
 program.version(pkg.version)
   .description(pkg.description)
   .argument('[path]', 'Directory to initialize', null, process.cwd())
-  .option('-n, --name', 'Name your project', program.STRING)
+  .option('-n, --name', 'Name of your project', program.STRING)
   .action(({path}, {name}, logger) => initializeModuleDirectory({path: resolve(path), name})
     .then(() => {
       logger.info('All done!');
