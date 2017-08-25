@@ -11,6 +11,6 @@ services:
     depends_on:
      - mongo
     environment:
-     - MONGO_URI=mongodb://mongo/starter
+     - MONGO_URI=mongodb://mongo/PROJECT_NAME
   mongo:
     image: mongo

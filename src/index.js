@@ -43,10 +43,13 @@ export function fillPackageJson (path) {
 
 export function renameProject (path, name) {
   return replace({
-    files: [`${path}/**/*`],
+    files: [
+      `${path}/**/*`,
+      `${path}/**/.*`
+    ],
     from: [
-      /MOUDLE_NAME/gm,
-      /READABLE_NAME/gm
+      /PROJECT_NAME/gm,
+      /PROJECT_READABLE_NAME/gm
     ],
     to: [
       snakeCase(name),
