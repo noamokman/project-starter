@@ -113,6 +113,41 @@ describe('Todo api', () => {
       }));
   });
 
+  describe('PUT /api/todos/completed', () => {
+    let todo;
+
+    beforeAll(() => request(server)
+      .post('/api/todos')
+      .send({text: 'lol'})
+      .set('Authorization', authorizationToken)
+      .then(({body}) => {
+        todo = body;
+      }));
+
+    it('should fail if not authorized', () => request(server)
+      .put('/api/todos/completed')
+      .expect(401));
+
+    it('should update all todos', () => request(server)
+      .put('/api/todos/completed')
+      .send({completed: true})
+      .set('Authorization', authorizationToken)
+      .expect(200)
+      .then(({body}) => {
+        expect(Object.keys(body)).toHaveLength(0);
+      })
+      .then(() => request(server)
+        .get(`/api/todos/${todo._id}`)
+        .set('Authorization', authorizationToken)
+        .expect(200))
+      .then(({body}) => {
+        expect(body).toHaveProperty('text', todo.text);
+        expect(body).toHaveProperty('completed', true);
+        expect(body).toHaveProperty('user', todo.user._id);
+        expect(body).toHaveProperty('_id');
+      }));
+  });
+
   describe('PUT /api/todos/:id', () => {
     let todo;
 
@@ -164,6 +199,40 @@ describe('Todo api', () => {
         expect(body).toHaveProperty('completed', true);
         expect(body).toHaveProperty('user', todo.user._id);
         expect(body).toHaveProperty('_id');
+      }));
+  });
+
+  describe('DELETE /api/todos/clear', () => {
+    let todo;
+
+    beforeAll(() => request(server)
+      .post('/api/todos')
+      .send({text: 'lol'})
+      .set('Authorization', authorizationToken)
+      .then(({body}) => {
+        todo = body;
+      }));
+
+    it('should fail if not authorized', () => request(server)
+      .delete('/api/todos/clear')
+      .expect(401));
+
+    it('should delete all completed todo', () => request(server)
+      .put('/api/todos/completed')
+      .send({completed: true})
+      .set('Authorization', authorizationToken)
+      .expect(200)
+      .then(() => request(server)
+        .delete('/api/todos/clear')
+        .set('Authorization', authorizationToken)
+        .expect(200))
+      .then(({body}) => {
+        expect(Object.keys(body)).toHaveLength(0);
+
+        return request(server)
+          .get(`/api/todos/${todo._id}`)
+          .set('Authorization', authorizationToken)
+          .expect(404);
       }));
   });
 
