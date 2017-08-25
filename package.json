@@ -1,7 +1,7 @@
 {
   "name": "project-starter",
   "version": "0.0.0",
-  "description": "project-starter cli",
+  "description": "a cli tool to help you start a new project",
   "main": "lib/index.js",
   "scripts": {
     "lint": "run-p lint-*",
@@ -14,7 +14,9 @@
     "jest": "jest",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "prepublishOnly": "npm run build",
-    "test": "npm run lint && npm run jest"
+    "test": "run-s lint jest test-dump",
+    "dump": "npm run build && rimraf dump && node bin/project-starter dump",
+    "test-dump": "npm run dump && cd dump && npm install && npm test"
   },
   "repository": {
     "type": "git",
@@ -39,15 +41,23 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-jest": "^20.0.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "coveralls": "^2.13.1",
+    "cpr": "^2.2.0",
     "eslint": "^4.5.0",
     "eslint-config-noamokman": "^6.0.1",
+    "execa": "^0.8.0",
     "husky": "^0.14.3",
     "jest": "^20.0.4",
+    "jsonfile": "^3.0.1",
     "lint-staged": "^4.0.4",
     "npm-run-all": "^4.0.2",
+    "pify": "^3.0.0",
+    "replace-in-file": "^2.6.2",
     "rimraf": "^2.6.1",
+    "snake-case": "^2.1.0",
+    "title-case": "^2.1.1",
     "validate-commit-msg": "^2.14.0"
   },
   "jest": {
