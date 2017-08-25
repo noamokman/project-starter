@@ -53,21 +53,6 @@
     "rimraf": "^2.6.1",
     "validate-commit-msg": "^2.14.0"
   },
-  "jest": {
-    "notify": true,
-    "collectCoverage": true,
-    "coverageThreshold": {
-      "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
-      }
-    },
-    "testMatch": [
-      "**/__tests__/**/*.spec.js"
-    ]
-  },
   "dependencies": {
     "caporal": "^0.7.0",
     "cpr": "^2.2.0",
