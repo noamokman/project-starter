@@ -8,7 +8,7 @@
     "lint-src": "eslint src --fix",
     "lint-tests": "eslint __tests__ --fix",
     "precommit": "lint-staged",
-    "commitmsg": "validate-commit-msg",
+    "commitmsg": "commitlint -e",
     "babel": "babel src -d lib -s",
     "build": "rimraf lib && npm run babel",
     "prepublishOnly": "npm run build",
@@ -43,6 +43,8 @@
     ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^3.1.3",
+    "@commitlint/config-angular": "^3.1.1",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
@@ -52,8 +54,7 @@
     "husky": "^0.14.3",
     "lint-staged": "^4.0.4",
     "npm-run-all": "^4.0.2",
-    "rimraf": "^2.6.1",
-    "validate-commit-msg": "^2.14.0"
+    "rimraf": "^2.6.1"
   },
   "dependencies": {
     "caporal": "^0.7.0",
