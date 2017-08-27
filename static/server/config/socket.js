@@ -1,6 +1,5 @@
 import socketio from 'socket.io';
 import socketioJwt from 'socketio-jwt';
-import middleware from 'socketio-wildcard';
 import _ from 'lodash';
 
 // inject:socket-imports
@@ -11,8 +10,6 @@ export default server => {
     serveClient: false,
     path: '/ws'
   });
-
-  socketServer.use(middleware());
 
   socketServer.on('connection', socketioJwt.authorize({
     secret: process.env.SESSION_SECRET,

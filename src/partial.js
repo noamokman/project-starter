@@ -148,7 +148,6 @@ export default {
     'passport-local-mongoose': '^4.1.0',
     pify: '^3.0.0',
     'socket.io': '^2.0.3',
-    'socketio-jwt': '^4.5.0',
-    'socketio-wildcard': '^2.0.0'
+    'socketio-jwt': '^4.5.0'
   }
 };
