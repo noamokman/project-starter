@@ -12,7 +12,7 @@ export default {
     'build-client': 'webpack --env=production --define process.env.NODE_ENV="\'production\'"',
     lint: 'run-p lint-*',
     precommit: 'lint-staged',
-    commitmsg: 'validate-commit-msg',
+    commitmsg: 'commitlint -e',
     'lint-server': 'eslint server --fix',
     'lint-client': 'eslint client --fix',
     'lint-tests': 'eslint __tests__ --fix',
@@ -51,6 +51,8 @@ export default {
     }
   },
   devDependencies: {
+    '@commitlint/cli': '^3.1.3',
+    '@commitlint/config-angular': '^3.1.1',
     axios: '^0.16.2',
     'babel-cli': '^6.26.0',
     'babel-eslint': '^7.2.3',
@@ -115,7 +117,6 @@ export default {
     'styled-components': '^2.1.2',
     supertest: '^3.0.0',
     uppercamelcase: '^3.0.0',
-    'validate-commit-msg': '^2.14.0',
     webpack: '^3.5.5',
     'webpack-dev-server': '^2.7.1'
   },
