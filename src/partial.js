@@ -67,7 +67,6 @@ export default {
     'babel-preset-env': '^1.6.0',
     'babel-preset-react': '^6.24.1',
     'babel-register': '^6.26.0',
-    classnames: '^2.2.5',
     'compression-webpack-plugin': '^1.0.0',
     copyfiles: '^1.2.0',
     'css-loader': '^0.28.5',
