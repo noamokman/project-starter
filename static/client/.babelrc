@@ -14,6 +14,7 @@
     ]
   ],
   "plugins": [
+    "react-hot-loader/babel",
     "transform-object-rest-spread",
     "lodash",
     "syntax-dynamic-import"

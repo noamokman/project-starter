@@ -1,6 +1,6 @@
 import 'dotenv-extended/config';
 import {resolve} from 'path';
-import {HotModuleReplacementPlugin, optimize} from 'webpack';
+import {HotModuleReplacementPlugin, optimize, NamedModulesPlugin} from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MinifyPlugin from 'babel-minify-webpack-plugin';
 import PreloadWebpackPlugin from 'preload-webpack-plugin';
@@ -9,6 +9,7 @@ import CompressionPlugin from 'compression-webpack-plugin';
 export default env => {
   const plugins = [
     new HotModuleReplacementPlugin(),
+    new NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       template: './client/index.html'
     }),
@@ -28,20 +29,25 @@ export default env => {
     new CompressionPlugin()
   ];
 
+  const entry = {
+    main: ['./client/index.js'],
+    vendor: [
+      'lodash',
+      'react',
+      'material-ui'
+    ]
+  };
+
   if (env === 'production') {
     plugins.push(new MinifyPlugin());
     plugins.push(new optimize.ModuleConcatenationPlugin());
   }
+  else {
+    entry.main.unshift('react-hot-loader/patch');
+  }
 
   return {
-    entry: {
-      main: './client/index.js',
-      vendor: [
-        'lodash',
-        'react',
-        'material-ui'
-      ]
-    },
+    entry,
     output: {
       path: resolve(__dirname, './dist/client'),
       filename: './[name].[hash].js',
@@ -80,6 +86,7 @@ export default env => {
       port: 9090,
       inline: true,
       historyApiFallback: true,
+      hot: true,
       proxy: {
         '/api': {
           target: `http://localhost:${process.env.PORT}`
