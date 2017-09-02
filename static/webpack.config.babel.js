@@ -29,31 +29,34 @@ export default env => {
     new CompressionPlugin()
   ];
 
-  const entry = {
-    main: ['./client/index.js'],
-    vendor: [
-      'lodash',
-      'react',
-      'material-ui'
-    ]
-  };
+  let devtool = 'eval-source-map';
 
   if (env === 'production') {
+    process.env.NODE_ENV = env;
+    devtool = 'source-map';
+
     plugins.push(new MinifyPlugin());
     plugins.push(new optimize.ModuleConcatenationPlugin());
   }
-  else {
-    entry.main.unshift('react-hot-loader/patch');
-  }
 
   return {
-    entry,
+    entry: {
+      main: [
+        'react-hot-loader/patch',
+        './client/index.js'
+      ],
+      vendor: [
+        'lodash',
+        'react',
+        'material-ui'
+      ]
+    },
     output: {
       path: resolve(__dirname, './dist/client'),
       filename: './[name].[hash].js',
       chunkFilename: './[name].[chunkhash].js'
     },
-    devtool: env === 'production' ? 'source-map' : 'eval-source-map',
+    devtool,
     module: {
       rules: [
         {
