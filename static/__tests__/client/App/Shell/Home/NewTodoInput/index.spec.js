@@ -28,7 +28,7 @@ describe('NewTodoInput container', () => {
 
     wrapper.find('input').simulate('change', {target: {value: 'test'}});
 
-    expect(wrapper.find('NewTodoInputContainer').node.state).toHaveProperty('text', 'test');
+    expect(wrapper.find('NewTodoInputContainer').instance().state).toHaveProperty('text', 'test');
   });
 
   it('should reject keys other than enter', () => {

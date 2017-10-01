@@ -23,13 +23,15 @@ describe('LoginForm component', () => {
       context: {muiTheme, store}
     });
 
-    const emailFields = wrapper.find('TextField').findWhere(node => node.props().name === 'email');
-    const input = emailFields.find('input');
+    const getField = element => wrapper.find('TextField')
+      .findWhere(node => node.props().name === 'email')
+      .find(element);
+    const input = getField('input');
 
     input.simulate('change', {target: {value: 'test'}});
     input.simulate('blur');
 
-    const textField = emailFields.find('TextField');
+    const textField = getField('TextField');
 
     expect(textField).toHaveProp('errorText', 'Invalid email address');
   });
