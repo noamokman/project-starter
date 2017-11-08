@@ -1,7 +1,7 @@
 import {resolve} from 'path';
 import program from 'caporal';
-import pkg from '../package.json';
 import updateNotifier from 'update-notifier';
+import pkg from '../package.json';
 import {initializeModuleDirectory} from './';
 
 const notifier = updateNotifier({pkg});

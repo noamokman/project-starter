@@ -6,6 +6,7 @@ import jsonfile from 'jsonfile';
 import titleCase from 'title-case';
 import snakeCase from 'snake-case';
 import replace from 'replace-in-file';
+import pCatchIf from 'p-catch-if';
 import partial from './partial.js';
 
 const jf = pify(jsonfile);
@@ -19,17 +20,11 @@ export function fillPackageJson (path) {
   const pkgPath = join(path, 'package.json');
 
   return jf.readFile(pkgPath)
-    .catch(error => {
-      if (error.code !== 'ENOENT') {
-        return Promise.reject(error);
-      }
-
-      return execa('npm', [
-        'init',
-        '-y'
-      ], {cwd: path})
-        .then(() => jf.readFile(pkgPath));
-    })
+    .catch(pCatchIf(({code}) => code === 'ENOENT', () => execa('npm', [
+      'init',
+      '-y'
+    ], {cwd: path})
+      .then(() => jf.readFile(pkgPath))))
     .then(pkg => {
       const newPkg = {...pkg, ...partial};
 

@@ -43,29 +43,30 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^3.2.0",
-    "@commitlint/config-angular": "^3.1.1",
+    "@commitlint/cli": "^4.2.2",
+    "@commitlint/config-angular": "^4.2.1",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
-    "eslint": "^4.8.0",
-    "eslint-config-noamokman": "^6.0.1",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.10.0",
+    "eslint-config-noamokman": "^7.0.0",
     "git-directory-deploy": "^1.5.1",
     "husky": "^0.14.3",
-    "lint-staged": "^4.2.3",
-    "npm-run-all": "^4.1.1",
+    "lint-staged": "^4.3.0",
+    "npm-run-all": "^4.1.2",
     "rimraf": "^2.6.2"
   },
   "dependencies": {
-    "caporal": "^0.7.0",
-    "cpr": "^2.2.0",
+    "caporal": "^0.8.0",
+    "cpr": "^3.0.1",
     "execa": "^0.8.0",
     "jsonfile": "^4.0.0",
+    "p-catch-if": "^1.0.2",
     "pify": "^3.0.0",
-    "replace-in-file": "^2.6.3",
+    "replace-in-file": "^3.0.0",
     "snake-case": "^2.1.0",
     "title-case": "^2.1.1",
-    "update-notifier": "^2.2.0"
+    "update-notifier": "^2.3.0"
   },
   "bin": "bin/project-starter"
 }
