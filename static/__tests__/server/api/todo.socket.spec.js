@@ -1,8 +1,9 @@
-import todoSocket, {emitter} from '../../../server/api/todo/todo.socket';
 import EventEmitter from 'events';
+import _ from 'lodash';
+import todoSocket, {emitter} from '../../../server/api/todo/todo.socket';
 
 const socket = {emit: jest.fn()};
-const getSockets = (filter = () => true) => {
+const getSockets = (filter = _.constant(true)) => {
   filter('id');
 
   return [socket];

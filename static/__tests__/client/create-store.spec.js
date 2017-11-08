@@ -1,8 +1,8 @@
-import createStore, {createAxiosConfig} from '../../client/create-store';
 import configureMockStore from 'redux-mock-store';
 import promiseMiddleware from 'redux-simple-promise';
 import {multiClientMiddleware} from 'redux-axios-middleware';
 import axios from 'axios';
+import createStore, {createAxiosConfig} from '../../client/create-store';
 import DevTools from '../../client/components/DevTools';
 
 describe('Create store', () => {

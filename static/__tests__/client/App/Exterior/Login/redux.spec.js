@@ -1,5 +1,5 @@
-import reducer, {CLEAR_ERROR, clearError} from '../../../../../client/App/Exterior/Login/redux';
 import {reject, resolve} from 'redux-simple-promise';
+import reducer, {CLEAR_ERROR, clearError} from '../../../../../client/App/Exterior/Login/redux';
 import {LOGIN} from '../../../../../client/reducers/auth';
 
 describe('Login redux', () => {

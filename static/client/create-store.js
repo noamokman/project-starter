@@ -1,10 +1,10 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 import promiseMiddleware, {resolve, reject} from 'redux-simple-promise';
-import rootReducer from './reducer';
 import {routerMiddleware} from 'react-router-redux';
 import axios from 'axios';
 import {multiClientMiddleware} from 'redux-axios-middleware';
 import socketIoMiddleware from 'redux-sockets';
+import rootReducer from './reducer';
 
 const suffixes = {
   successSuffix: resolve(''),

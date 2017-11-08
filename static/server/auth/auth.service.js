@@ -1,8 +1,9 @@
 import jwt from 'jsonwebtoken';
 import expressJwt from 'express-jwt';
 import pify from 'pify';
-import User from '../api/user/user.model';
 import createError from 'http-errors';
+import User from '../api/user/user.model';
+
 const validateJwt = pify(expressJwt({secret: process.env.SESSION_SECRET}));
 
 export function isAuthenticated () {

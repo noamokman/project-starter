@@ -10,7 +10,7 @@ describe('AppBarActions component', () => {
   it('should render admin page button if passed on props', () => {
     const wrapper = shallow(<AppBarActions admin />);
 
-    expect(wrapper.find({tooltip: 'Admin'}));
+    expect(wrapper.find({tooltip: 'Admin'})).toBePresent();
   });
 
   it('should not render admin page button if not admin', () => {

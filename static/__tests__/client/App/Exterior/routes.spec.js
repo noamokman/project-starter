@@ -1,6 +1,4 @@
 import React from 'react';
-import {mount} from 'enzyme';
-import routes from '../../../../client/App/Exterior/routes';
 import {Router, Route, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import {object} from 'prop-types';
@@ -9,6 +7,8 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import configureMockStore from 'redux-mock-store';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import {routerReducer, routerMiddleware, routerActions} from 'react-router-redux';
+import {mount} from 'enzyme';
+import routes from '../../../../client/App/Exterior/routes';
 
 describe('Exterior routes component', () => {
   it('renders without crashing', () => {

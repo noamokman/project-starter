@@ -1,7 +1,7 @@
 import React from 'react';
-import DevTools from '../../../../client/components/DevTools';
 import {shallow} from 'enzyme';
 import {createStore, compose} from 'redux';
+import DevTools from '../../../../client/components/DevTools';
 
 describe('DevTools component', () => {
   it('renders without crashing', () => {

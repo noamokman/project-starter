@@ -1,7 +1,7 @@
 import React from 'react';
-import Root from '../../../../client/components/Root';
 import {shallow} from 'enzyme';
 import configureMockStore from 'redux-mock-store';
+import Root from '../../../../client/components/Root';
 
 describe('Root component', () => {
   it('renders without crashing', () => {

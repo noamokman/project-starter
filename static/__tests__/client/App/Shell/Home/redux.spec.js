@@ -1,3 +1,4 @@
+import {resolve} from 'redux-simple-promise';
 import reducer, {
   TOGGLE_VISIBILITY,
   toggleVisibility,
@@ -19,8 +20,6 @@ import reducer, {
   clearCompleted,
   CLEAR_COMPLETED
 } from '../../../../../client/App/Shell/Home/redux';
-
-import {resolve} from 'redux-simple-promise';
 
 describe('Home redux', () => {
   describe('reducer', () => {

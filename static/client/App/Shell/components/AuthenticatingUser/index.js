@@ -1,8 +1,8 @@
 import {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {loadUser, authorize} from '../../../../reducers/auth';
 import {socketConnect} from 'redux-sockets';
+import {loadUser, authorize} from '../../../../reducers/auth';
 
 class AuthenticatingUser extends Component {
   componentDidMount () {
@@ -13,7 +13,7 @@ class AuthenticatingUser extends Component {
       .then(authorize);
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  // eslint-disable-next-line class-methods-use-this, lodash/prefer-constant
   render () {
     return null;
   }

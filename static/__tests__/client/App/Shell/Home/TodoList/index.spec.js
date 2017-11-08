@@ -1,10 +1,10 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import TodoList from '../../../../../../client/App/Shell/Home/TodoList';
 import configureMockStore from 'redux-mock-store';
 import {object} from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import TodoList from '../../../../../../client/App/Shell/Home/TodoList';
 
 describe('TodoList container', () => {
   it('renders without crashing', () => {

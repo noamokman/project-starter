@@ -1,9 +1,9 @@
 import React from 'react';
 import {object} from 'prop-types';
 import {shallow, mount} from 'enzyme';
-import TodoItem from '../../../../../../../../client/App/Shell/Home/TodoList/components/TodoItem';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import TodoItem from '../../../../../../../../client/App/Shell/Home/TodoList/components/TodoItem';
 
 describe('TodoItem component', () => {
   it('renders without crashing', () => {

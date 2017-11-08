@@ -1,10 +1,10 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import AppBarActions from '../../../../../../client/App/Shell/components/AppBarActions';
 import configureMockStore from 'redux-mock-store';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {object} from 'prop-types';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import AppBarActions from '../../../../../../client/App/Shell/components/AppBarActions';
 
 describe('AppBarActions container', () => {
   it('renders without crashing', () => {

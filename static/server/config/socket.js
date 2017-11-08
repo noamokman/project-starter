@@ -16,7 +16,7 @@ export default server => {
     timeout: 15000
   }));
 
-  const getSockets = (filter = () => true) => _.values(socketServer.sockets.connected)
+  const getSockets = (filter = _.constant(true)) => _.values(socketServer.sockets.connected)
     .filter(socket => socket.decoded_token)
     .filter(({decoded_token: {_id}}) => filter(_id));
 

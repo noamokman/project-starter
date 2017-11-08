@@ -1,6 +1,6 @@
-import Todo from './todo.model';
 import empty from 'http-reject-empty';
 import _ from 'lodash';
+import Todo from './todo.model';
 import {emitter} from './todo.socket';
 
 export function index ({user}) {

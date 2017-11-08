@@ -2,10 +2,9 @@ import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 import {connectedRouterRedirect} from 'redux-auth-wrapper/history3/redirect';
 import {routerActions} from 'react-router-redux';
-import Shell from './';
 import loadable from 'loadable-components';
-
 import AuthenticatingUser from './components/AuthenticatingUser';
+import Shell from '.';
 
 const userIsAuthenticated = connectedRouterRedirect({
   redirectPath: '/login',

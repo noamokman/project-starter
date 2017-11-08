@@ -1,10 +1,10 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 import {object} from 'prop-types';
-import ClearCompletedButton from '../../../../../../client/App/Shell/Home/ClearCompletedButton';
 import configureMockStore from 'redux-mock-store';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import ClearCompletedButton from '../../../../../../client/App/Shell/Home/ClearCompletedButton';
 
 describe('ClearCompletedButton container', () => {
   it('renders without crashing', () => {

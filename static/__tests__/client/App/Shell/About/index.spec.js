@@ -1,6 +1,6 @@
 import React from 'react';
-import About from '../../../../../client/App/Shell/About';
 import {shallow} from 'enzyme';
+import About from '../../../../../client/App/Shell/About';
 
 describe('About component', () => {
   it('renders without crashing', () => {

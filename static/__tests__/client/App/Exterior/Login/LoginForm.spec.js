@@ -1,11 +1,11 @@
 import React from 'react';
-import LoginForm from '../../../../../client/App/Exterior/Login/LoginForm';
 import {shallow, mount} from 'enzyme';
 import {object} from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import {createStore, combineReducers} from 'redux';
 import {reducer as formReducer} from 'redux-form';
+import LoginForm from '../../../../../client/App/Exterior/Login/LoginForm';
 
 describe('LoginForm component', () => {
   it('renders without crashing', () => {

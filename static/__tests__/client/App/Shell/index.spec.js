@@ -1,6 +1,6 @@
 import React from 'react';
-import Shell from '../../../../client/App/Shell';
 import {shallow} from 'enzyme';
+import Shell from '../../../../client/App/Shell';
 
 describe('Shell component', () => {
   it('renders without crashing', () => {

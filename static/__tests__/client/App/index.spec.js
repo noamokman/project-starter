@@ -1,6 +1,6 @@
 import React from 'react';
-import App from '../../../client/App';
 import {shallow} from 'enzyme';
+import App from '../../../client/App';
 
 describe('App component', () => {
   it('renders without crashing', () => {

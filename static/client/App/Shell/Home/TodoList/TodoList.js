@@ -1,9 +1,9 @@
 import React from 'react';
-import TodoItem from './components/TodoItem';
 import plur from 'plur';
 import {List} from 'material-ui';
 import styled from 'styled-components';
 import {Flex} from 'reflexbox';
+import TodoItem from './components/TodoItem';
 
 const ScrollableDiv = styled(Flex)
   .attrs({column: true})`

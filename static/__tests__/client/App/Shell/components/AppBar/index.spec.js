@@ -1,10 +1,10 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import AppBar from '../../../../../../client/App/Shell/components/AppBar';
 import configureMockStore from 'redux-mock-store';
 import {object} from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import AppBar from '../../../../../../client/App/Shell/components/AppBar';
 
 describe('AppBar container', () => {
   it('renders without crashing', () => {

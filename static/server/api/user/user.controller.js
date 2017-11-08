@@ -1,7 +1,7 @@
-import User from './user.model';
 import createError from 'http-errors';
 import empty from 'http-reject-empty';
 import _ from 'lodash';
+import User from './user.model';
 
 export function index () {
   return User.find({});

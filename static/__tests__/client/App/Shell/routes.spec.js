@@ -1,6 +1,5 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import routes from '../../../../client/App/Shell/routes';
 import {Router, Route, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import {object} from 'prop-types';
@@ -11,6 +10,7 @@ import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import {routerReducer, routerMiddleware, routerActions} from 'react-router-redux';
 import promiseMiddleware from 'redux-simple-promise';
 import {multiClientMiddleware} from 'redux-axios-middleware';
+import routes from '../../../../client/App/Shell/routes';
 import {createAxiosConfig} from '../../../../client/create-store';
 
 describe('Shell routes component', () => {

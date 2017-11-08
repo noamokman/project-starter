@@ -1,5 +1,4 @@
 import React from 'react';
-import Login from '../../../../../client/App/Exterior/Login';
 import {shallow, mount} from 'enzyme';
 import configureMockStore from 'redux-mock-store';
 import {multiClientMiddleware} from 'redux-axios-middleware';
@@ -7,6 +6,7 @@ import {object} from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import promiseMiddleware from 'redux-simple-promise';
+import Login from '../../../../../client/App/Exterior/Login';
 import {createAxiosConfig} from '../../../../../client/create-store';
 
 describe('Login container', () => {

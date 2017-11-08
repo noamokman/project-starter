@@ -1,3 +1,4 @@
 {
-  "extends": "noamokman/react-test"
+  "extends": "noamokman/react-test",
+  "parser": "babel-eslint"
 }

@@ -1,7 +1,7 @@
 import {AsyncRouter} from 'express-async-router';
 import objectId from 'express-param-objectid';
-import * as controller from './user.controller';
 import {isAuthenticated, isAdmin} from '../../auth/auth.service';
+import * as controller from './user.controller';
 
 const router = new AsyncRouter();
 

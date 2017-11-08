@@ -1,7 +1,7 @@
 import React from 'react';
-import AppBarActions from '../AppBarActions';
 import {AppBar} from 'material-ui';
 import styled from 'styled-components';
+import AppBarActions from '../AppBarActions';
 
 const ClickableTitle = styled.span`
   cursor: pointer;

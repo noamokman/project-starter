@@ -1,6 +1,6 @@
 import React from 'react';
-import Login from '../../../../../client/App/Exterior/Login/Login';
 import {shallow} from 'enzyme';
+import Login from '../../../../../client/App/Exterior/Login/Login';
 
 describe('Login component', () => {
   it('renders without crashing', () => {

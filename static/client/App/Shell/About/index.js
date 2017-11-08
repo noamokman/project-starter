@@ -5,7 +5,7 @@ import {Card, CardTitle, CardText} from 'material-ui';
 export default () => (
   <Flex auto column align='center' justify='center'>
     <Card>
-      <CardTitle title='Contributers' />
+      <CardTitle title='Contributors' />
       <CardText>
         <Flex column>
           <span>{'Noam Okman'}</span>

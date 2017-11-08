@@ -1,6 +1,6 @@
 import React from 'react';
-import Exterior from '../../../../client/App/Exterior';
 import {shallow} from 'enzyme';
+import Exterior from '../../../../client/App/Exterior';
 
 describe('Exterior component', () => {
   it('renders without crashing', () => {

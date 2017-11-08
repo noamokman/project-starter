@@ -1,7 +1,7 @@
 import {AsyncRouter} from 'express-async-router';
 import objectId from 'express-param-objectid';
-import * as controller from './todo.controller';
 import {isAuthenticated} from '../../auth/auth.service';
+import * as controller from './todo.controller';
 
 const router = new AsyncRouter();
 

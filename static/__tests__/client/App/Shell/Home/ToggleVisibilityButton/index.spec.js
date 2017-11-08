@@ -3,8 +3,8 @@ import {mount} from 'enzyme';
 import {object} from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import ToggleVisibilityButton from '../../../../../../client/App/Shell/Home/ToggleVisibilityButton';
 import configureMockStore from 'redux-mock-store';
+import ToggleVisibilityButton from '../../../../../../client/App/Shell/Home/ToggleVisibilityButton';
 
 describe('ToggleVisibilityButton container', () => {
   it('renders without crashing', () => {

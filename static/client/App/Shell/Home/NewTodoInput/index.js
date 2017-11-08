@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
-import {addTodo} from '../redux';
 import {connect} from 'react-redux';
+import {addTodo} from '../redux';
 import NewTodoInput from './NewTodoInput';
 
 class NewTodoInputContainer extends Component {

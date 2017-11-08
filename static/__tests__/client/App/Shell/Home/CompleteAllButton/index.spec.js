@@ -1,10 +1,10 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import CompleteAllButton from '../../../../../../client/App/Shell/Home/CompleteAllButton';
 import configureMockStore from 'redux-mock-store';
 import {object} from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import CompleteAllButton from '../../../../../../client/App/Shell/Home/CompleteAllButton';
 
 describe('CompleteAllButton container', () => {
   it('renders without crashing', () => {

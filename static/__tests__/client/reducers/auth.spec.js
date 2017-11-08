@@ -1,7 +1,6 @@
 import {reject, resolve} from 'redux-simple-promise';
 import socketIoMiddleware, {socketConnect} from 'redux-sockets';
 import configureMockStore from 'redux-mock-store';
-import {socket} from './__mocks__/socket.io-client';
 import reducer, {
   LOGIN,
   LOGOUT,
@@ -11,6 +10,7 @@ import reducer, {
   loadUser,
   logout, AUTHORIZE
 } from '../../../client/reducers/auth';
+import {socket} from './__mocks__/socket.io-client';
 
 describe('Auth redux', () => {
   describe('reducer', () => {
