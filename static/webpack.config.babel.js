@@ -1,5 +1,5 @@
-import 'dotenv-extended/config';
 import {resolve} from 'path';
+import 'dotenv-extended/config';
 import {HotModuleReplacementPlugin, optimize, NamedModulesPlugin} from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MinifyPlugin from 'babel-minify-webpack-plugin';
