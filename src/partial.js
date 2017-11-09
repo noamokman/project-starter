@@ -77,7 +77,6 @@ export default {
     'enzyme-adapter-react-16': '^1.0.4',
     eslint: '^4.10.0',
     'eslint-config-noamokman': '^7.0.1',
-    'eslint-plugin-react': '^7.4.0',
     'file-loader': '^1.1.5',
     'html-webpack-plugin': '^2.30.1',
     husky: '^0.14.3',
