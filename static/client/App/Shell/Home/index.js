@@ -14,7 +14,7 @@ const Title = styled(CardTitle)
     title: 'Todos'
   })`
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 `;
 
 export default () => (

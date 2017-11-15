@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import {Router, Route, browserHistory} from 'react-router';
+import {Router, Route} from 'react-router';
 import {Provider} from 'react-redux';
 import {object} from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -11,16 +11,24 @@ import {routerReducer, routerMiddleware, routerActions} from 'react-router-redux
 import promiseMiddleware from 'redux-simple-promise';
 import {multiClientMiddleware} from 'redux-axios-middleware';
 import routes from '../../../../client/App/Shell/routes';
+import AuthenticatingUser from '../../../../client/App/Shell/components/AuthenticatingUser';
 import {createAxiosConfig} from '../../../../client/create-store';
 
 describe('Shell routes component', () => {
+  let history;
+
+  beforeEach(() => {
+    jest.resetModules();
+    history = require('react-router').browserHistory;
+  });
+
   it('renders without crashing', () => {
     const mockStore = configureMockStore();
     const store = mockStore({auth: {}});
 
     mount(
       <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={history}>
           <Route path='*'>
             {routes}
           </Route>
@@ -35,7 +43,7 @@ describe('Shell routes component', () => {
       {
         auth: {user: {admin: true}}
       },
-      compose(applyMiddleware(routerMiddleware(browserHistory)))
+      compose(applyMiddleware(routerMiddleware(history)))
     );
 
     store.dispatch(routerActions.push('/admin'));
@@ -44,7 +52,7 @@ describe('Shell routes component', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={history}>
           <Route path='/'>
             {routes}
           </Route>
@@ -66,7 +74,7 @@ describe('Shell routes component', () => {
       {
         auth: {user: {}}
       },
-      compose(applyMiddleware(routerMiddleware(browserHistory)))
+      compose(applyMiddleware(routerMiddleware(history)))
     );
 
     store.dispatch(routerActions.push('/about'));
@@ -75,7 +83,7 @@ describe('Shell routes component', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={history}>
           <Route path='/'>
             {routes}
           </Route>
@@ -97,7 +105,7 @@ describe('Shell routes component', () => {
       {
         auth: {user: {admin: false}}
       },
-      compose(applyMiddleware(routerMiddleware(browserHistory)))
+      compose(applyMiddleware(routerMiddleware(history)))
     );
 
     store.dispatch(routerActions.push('/admin'));
@@ -106,7 +114,7 @@ describe('Shell routes component', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={history}>
           <Route path='/'>
             {routes}
           </Route>
@@ -129,7 +137,7 @@ describe('Shell routes component', () => {
         auth: {token: 'token'}
       },
       compose(applyMiddleware(
-        routerMiddleware(browserHistory),
+        routerMiddleware(history),
         promiseMiddleware(),
         multiClientMiddleware(createAxiosConfig())
       ))
@@ -139,7 +147,7 @@ describe('Shell routes component', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={history}>
           <Route path='/'>
             {routes}
           </Route>
@@ -152,6 +160,6 @@ describe('Shell routes component', () => {
       }
     );
 
-    expect(wrapper.find('AuthenticatingUser')).toBePresent();
+    expect(wrapper.find(AuthenticatingUser)).toBePresent();
   });
 });

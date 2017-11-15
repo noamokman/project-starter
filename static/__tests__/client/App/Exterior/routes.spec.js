@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route, browserHistory} from 'react-router';
+import {Router, Route} from 'react-router';
 import {Provider} from 'react-redux';
 import {object} from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -9,15 +9,23 @@ import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import {routerReducer, routerMiddleware, routerActions} from 'react-router-redux';
 import {mount} from 'enzyme';
 import routes from '../../../../client/App/Exterior/routes';
+import Login from '../../../../client/App/Exterior/Login';
 
 describe('Exterior routes component', () => {
+  let history;
+
+  beforeEach(() => {
+    jest.resetModules();
+    history = require('react-router').browserHistory;
+  });
+
   it('renders without crashing', () => {
     const mockStore = configureMockStore();
     const store = mockStore({auth: {}});
 
     const wrapper = mount(
       <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={history}>
           <Route path='/'>
             {routes}
           </Route>
@@ -36,7 +44,7 @@ describe('Exterior routes component', () => {
         auth: {},
         login: {}
       },
-      compose(applyMiddleware(routerMiddleware(browserHistory)))
+      compose(applyMiddleware(routerMiddleware(history)))
     );
 
     store.dispatch(routerActions.push('/login'));
@@ -45,7 +53,7 @@ describe('Exterior routes component', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={history}>
           <Route path='/'>
             {routes}
           </Route>
@@ -58,8 +66,6 @@ describe('Exterior routes component', () => {
       }
     );
 
-    expect(wrapper.find('LoginContainer')).toBePresent();
+    expect(wrapper.find(Login)).toBePresent();
   });
 });
-
-

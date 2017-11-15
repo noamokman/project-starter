@@ -28,7 +28,7 @@ describe('NewTodoInput container', () => {
 
     wrapper.find('input').simulate('change', {target: {value: 'test'}});
 
-    expect(wrapper.find('NewTodoInputContainer').instance().state).toHaveProperty('text', 'test');
+    expect(wrapper.find(NewTodoInput).find('withState(withHandlers(mapProps(TextField)))').instance().state).toHaveProperty('stateValue', 'test');
   });
 
   it('should reject keys other than enter', () => {

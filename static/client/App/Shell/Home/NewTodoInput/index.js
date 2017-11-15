@@ -1,49 +1,34 @@
-import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {compose, withHandlers, withState, mapProps} from 'recompose';
+import {TextField} from 'material-ui';
 import {addTodo} from '../redux';
-import NewTodoInput from './NewTodoInput';
 
-class NewTodoInputContainer extends Component {
-  constructor () {
-    super();
+export default compose(
+  connect(
+    null,
+    dispatch => bindActionCreators({addTodo}, dispatch)
+  ),
+  withState('text', 'updateText', ''),
+  withHandlers({
+    onChange: ({updateText}) => ({target: {value}}) => {
+      updateText(value);
+    },
+    onSave: ({updateText, addTodo}) => ({which, target: {value}}) => {
+      const text = value.trim();
 
-    this.state = {
-      text: ''
-    };
+      if (which !== 13 || !text.length) {
+        return;
+      }
 
-    this.handleSave = this.handleSave.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange ({target: {value}}) {
-    this.setState({text: value});
-  }
-
-  handleSave ({which, target: {value}}) {
-    const text = value.trim();
-
-    if (which !== 13 || !text.length) {
-      return;
+      addTodo(text);
+      updateText('');
     }
-
-    this.props.addTodo(text);
-    this.setState({text: ''});
-  }
-
-  render () {
-    return (
-      <NewTodoInput
-        onSave={this.handleSave}
-        onChange={this.handleChange}
-        text={this.state.text}
-        placeholder='What needs to be done?'
-      />
-    );
-  }
-}
-
-export default connect(
-  null,
-  dispatch => bindActionCreators({addTodo}, dispatch)
-)(NewTodoInputContainer);
+  }),
+  mapProps(({text, onSave, onChange}) => ({
+    hintText: 'What needs to be done?',
+    value: text,
+    onChange,
+    onKeyDown: onSave
+  }))
+)(TextField);

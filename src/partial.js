@@ -102,6 +102,7 @@ export default {
     'react-router': '^3.0.0',
     'react-router-redux': '^4.0.8',
     'react-test-renderer': '^16.0.0',
+    recompose: '^0.26.0',
     redux: '^3.7.2',
     'redux-actions': '^2.2.1',
     'redux-auth-wrapper': '^2.0.2',

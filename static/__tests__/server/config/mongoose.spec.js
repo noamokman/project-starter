@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 const mockInfo = jest.fn();
 const mockError = jest.fn();
 const mockSeed = jest.fn();
@@ -12,6 +14,10 @@ jest.mock('mongoose-plugin-seed', () => ({
 }));
 
 describe('Mongoose config', () => {
+  afterAll(() => {
+    mongoose.connection.close();
+  });
+
   describe('exports', () => {
     it('should expose default function', () => {
       const module = require('../../../server/config/mongoose');
@@ -29,6 +35,8 @@ describe('Mongoose config', () => {
     });
 
     it('should return a promise on SEED_DB undefined', () => {
+      delete process.env.SEED_DB;
+
       const {default: seed} = require('../../../server/config/mongoose');
 
       const promise = seed();

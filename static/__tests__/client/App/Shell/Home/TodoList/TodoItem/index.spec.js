@@ -3,7 +3,7 @@ import {object} from 'prop-types';
 import {shallow, mount} from 'enzyme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import TodoItem from '../../../../../../../../client/App/Shell/Home/TodoList/components/TodoItem';
+import TodoItem from '../../../../../../../client/App/Shell/Home/TodoList/TodoItem';
 
 describe('TodoItem component', () => {
   it('renders without crashing', () => {

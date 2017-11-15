@@ -1,31 +1,33 @@
-import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {compose, mapProps, lifecycle} from 'recompose';
 import * as todoActions from '../redux';
 import TodoList from './TodoList';
 
-class TodoListContainer extends Component {
-  componentDidMount () {
-    const {loadTodos, loaded} = this.props;
+export default compose(
+  connect(
+    ({home}) => home,
+    dispatch => bindActionCreators(todoActions, dispatch)
+  ),
+  lifecycle({
+    componentDidMount () {
+      const {loadTodos, loaded} = this.props;
 
-    if (!loaded) {
-      loadTodos();
+      if (!loaded) {
+        loadTodos();
+      }
     }
-  }
-
-  render () {
-    const {todos, completeTodo, deleteTodo, visibility} = this.props;
+  }),
+  mapProps(({todos, completeTodo, deleteTodo, visibility}) => {
     const filteredTodos = todos.filter(({completed}) => visibility || !completed)
-      .sort(({completed: aCompleted}, {completed: bCompleted}) => aCompleted > bCompleted);
+      .sort((a, b) => a.completed > b.completed);
     const activeTodos = todos.reduce((count, {completed}) => !completed ? count + 1 : count, 0);
 
-    return (
-      <TodoList todos={filteredTodos} completeTodo={completeTodo} deleteTodo={deleteTodo} activeTodos={activeTodos} />
-    );
-  }
-}
-
-export default connect(
-  ({home}) => home,
-  dispatch => bindActionCreators(todoActions, dispatch)
-)(TodoListContainer);
+    return ({
+      todos: filteredTodos,
+      activeTodos,
+      completeTodo,
+      deleteTodo
+    });
+  })
+)(TodoList);

@@ -16,7 +16,6 @@ const userIsNotAuthenticated = connectedRouterRedirect({
   wrapperDisplayName: 'UserIsNotAuthenticated'
 });
 
-
 export default (
   <Route component={userIsNotAuthenticated(Exterior)}>
     <Route path='login' component={Login} />

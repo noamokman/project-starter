@@ -39,13 +39,7 @@ export default function (state = initialState, {type, payload}) {
   case TODO_UPDATE:
     return {
       ...state,
-      todos: state.todos.map(todo => {
-        if (todo._id === payload._id) {
-          return payload;
-        }
-
-        return todo;
-      })
+      todos: state.todos.map(todo => todo._id === payload._id ? payload : todo)
     };
   case resolve(LOAD_TODOS):
     return {
