@@ -100,10 +100,20 @@ describe('Shell routes component', () => {
   });
 
   it('should go from admin to home if not admin', () => {
+    const reducer = (state = {}) => state;
     const store = createStore(
-      combineReducers({routing: routerReducer, auth: (state = {}) => state}),
+      combineReducers({
+        routing: routerReducer,
+        auth: reducer,
+        home: reducer
+      }),
       {
-        auth: {user: {admin: false}}
+        auth: {user: {admin: false}},
+        home: {
+          todos: [],
+          loaded: false,
+          visibility: true
+        }
       },
       compose(applyMiddleware(routerMiddleware(history)))
     );

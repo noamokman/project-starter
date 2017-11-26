@@ -140,6 +140,7 @@ export default {
     'express-mongoose-errors': '^0.2.0',
     'express-param-objectid': '^1.0.0',
     'express-static-gzip': '^0.3.0',
+    helmet: '^3.9.0',
     'http-errors': '^1.6.2',
     'http-reject-empty': '^1.0.0',
     'in-production': '^1.0.1',

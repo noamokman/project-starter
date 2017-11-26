@@ -6,6 +6,7 @@ import {urlencoded, json} from 'body-parser';
 import methodOverride from 'method-override';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
+import helmet from 'helmet';
 import mongooseErrors from 'express-mongoose-errors';
 import jsonErrorHandler from 'express-json-error-handler';
 import inProduction from 'in-production';
@@ -16,6 +17,7 @@ import routes from './routes';
 export default () => {
   const app = express();
 
+  app.use(helmet());
   app.use(urlencoded({extended: false}));
   app.use(json());
   app.use(methodOverride());
