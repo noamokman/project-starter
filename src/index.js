@@ -13,7 +13,8 @@ const jf = pify(jsonfile);
 const cp = pify(cpr);
 
 export function copyStaticFiles (path) {
-  return cp(join(__dirname, '../static'), path, {overwrite: true});
+  return cp(join(__dirname, '../static'), path, {overwrite: true})
+    .then(() => pify(rename)(join(path, 'gitignore'), join(path, '.gitignore')));
 }
 
 export function fillPackageJson (path) {
