@@ -1,4 +1,5 @@
 import {join} from 'path';
+import {rename} from 'fs';
 import cpr from 'cpr';
 import pify from 'pify';
 import execa from 'execa';
