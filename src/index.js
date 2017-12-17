@@ -56,7 +56,7 @@ export function renameProject (path, name) {
   });
 }
 
-export function initializeModuleDirectory ({path, name}) {
+export function initializeProjectDirectory ({path, name}) {
   return copyStaticFiles(path)
     .then(() => fillPackageJson(path))
     .then(pkg => renameProject(path, name || pkg.name));

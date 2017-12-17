@@ -3,6 +3,7 @@
   "version": "1.1.0",
   "description": "a cli tool to help you start a new project",
   "main": "lib/index.js",
+  "module": "src/index.js",
   "scripts": {
     "lint": "run-p lint-*",
     "lint-src": "eslint src --fix",
@@ -27,14 +28,18 @@
     "generator",
     "project"
   ],
-  "author": "Noam Okman <noamokman@gmail.com> (https://github.com/noamokman)",
+  "author": {
+    "name": "Noam Okman",
+    "email": "noamokman@gmail.com",
+    "url": "https://github.com/noamokman"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/noamokman/project-starter/issues"
   },
   "homepage": "https://github.com/noamokman/project-starter#readme",
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "lint-staged": {
     "*.js": [
@@ -43,24 +48,24 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^5.1.1",
+    "@commitlint/cli": "^5.2.5",
     "@commitlint/config-angular": "^5.1.1",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "eslint": "^4.12.0",
-    "eslint-config-noamokman": "^7.1.0",
+    "eslint": "^4.13.1",
+    "eslint-config-noamokman": "^7.2.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-lodash": "^2.5.0",
-    "eslint-plugin-unicorn": "^3.0.0",
+    "eslint-plugin-unicorn": "^3.0.1",
     "git-directory-deploy": "^1.5.1",
     "husky": "^0.14.3",
-    "lint-staged": "^5.0.0",
+    "lint-staged": "^6.0.0",
     "npm-run-all": "^4.1.2",
     "rimraf": "^2.6.2"
   },
   "dependencies": {
-    "caporal": "^0.8.0",
+    "caporal": "^0.9.0",
     "cpr": "^3.0.1",
     "execa": "^0.8.0",
     "jsonfile": "^4.0.0",
@@ -71,5 +76,7 @@
     "title-case": "^2.1.1",
     "update-notifier": "^2.3.0"
   },
-  "bin": "bin/project-starter"
+  "bin": {
+    "project-starter": "bin/project-starter"
+  }
 }
