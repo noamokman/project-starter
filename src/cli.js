@@ -9,14 +9,13 @@ const notifier = updateNotifier({pkg});
 program.version(pkg.version)
   .description(pkg.description)
   .argument('[path]', 'Directory to initialize', null, process.cwd())
-  .option('-n, --name', 'Name of your project', program.STRING)
-  .action(({path}, {name}, logger) => initializeProjectDirectory({path: resolve(path), name})
+  .action(({path}, options, logger) => initializeProjectDirectory({path: resolve(path)})
     .then(() => {
       logger.info('All done!');
 
       notifier.notify();
     })
-    .catch(logger.error));
+    .catch(console.error));
 
 export default argv => {
   program

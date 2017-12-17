@@ -85,10 +85,6 @@ $ project-starter
 
      [path]      Directory to initialize      optional      default: "/path/to/cwd"
 
-   OPTIONS
-
-     -n, --name      Name of your project      optional      
-
    GLOBAL OPTIONS
 
      -h, --help         Display help                                      

@@ -68,13 +68,14 @@
     "caporal": "^0.9.0",
     "cpr": "^3.0.1",
     "execa": "^0.8.0",
-    "jsonfile": "^4.0.0",
     "p-catch-if": "^1.0.2",
     "pify": "^3.0.0",
+    "read-pkg": "^3.0.0",
     "replace-in-file": "^3.0.0",
     "snake-case": "^2.1.0",
     "title-case": "^2.1.1",
-    "update-notifier": "^2.3.0"
+    "update-notifier": "^2.3.0",
+    "write-pkg": "^3.1.0"
   },
   "bin": {
     "project-starter": "bin/project-starter"
