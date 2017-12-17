@@ -30,7 +30,7 @@ describe('AppBar container', () => {
 
     wrapper.find('AppBar')
       .props()
-      .onTitleTouchTap();
+      .onTitleClick();
 
     const [{payload}] = store.getActions();
 
