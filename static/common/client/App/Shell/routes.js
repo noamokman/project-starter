@@ -23,8 +23,8 @@ const userIsAdmin = connectedRouterRedirect({
   wrapperDisplayName: 'UserIsAdmin'
 });
 
-const Home = loadable(() => import('./Home'));
-const About = loadable(() => import('./About'));
+const Home = loadable(() => import(/* webpackChunkName: "home" */ './Home'));
+const About = loadable(() => import(/* webpackChunkName: "about" */ './About'));
 const Admin = loadable(() => import(/* webpackChunkName: "admin" */ './Admin'));
 
 export default (
